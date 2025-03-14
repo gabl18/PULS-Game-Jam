@@ -30,11 +30,11 @@ var credits = [
 		"A game by Awesome Game Company"
 	],[
 		"Programming",
-		"Programmer Name",
+		"Michael",
 		"Programmer Name 2"
 	],[
 		"Art",
-		"Artist Name"
+		"Gabriel"
 	],[
 		"Music",
 		"Musician Name"
