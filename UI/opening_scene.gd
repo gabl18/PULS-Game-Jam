@@ -7,6 +7,7 @@ var started = false
 func _input(event: InputEvent) -> void:
 	if (event is InputEventKey or event is InputEventMouseButton)and not started:
 		started = true
+		animation_player.speed_scale = 0.1
 		animation_player.play('Starting_Zoom')
 		label.hide()
 		
@@ -27,5 +28,7 @@ func _ready() -> void:
 	$CanvasLayer/TextureRect/Control/JamCred.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/Jam.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/OurCred.modulate.a = 0
+	animation_player.speed_scale = 1
+	animation_player.play('flicker')
 	
 	

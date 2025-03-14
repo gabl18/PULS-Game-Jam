@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdc3ra37a6mpe"]
+[gd_scene load_steps=4 format=3 uid="uid://bdc3ra37a6mpe"]
 
-[ext_resource type="Script" path="res://addons/credits.gd" id="1_2g780"]
 [ext_resource type="Texture2D" uid="uid://c1nm1h0mwv76y" path="res://assets/Art/button_9patch.png" id="1_uuuvy"]
 [ext_resource type="LabelSettings" uid="uid://crmxhf77knfiu" path="res://assets/Fonts/UI_Font_Basic.tres" id="2_kk2ga"]
 [ext_resource type="PackedScene" uid="uid://cmmk31d282i46" path="res://addons/CREDITS/GodotCredits.tscn" id="3_kk2ga"]
@@ -12,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2g780")
 
 [node name="CreditsBox" parent="." instance=ExtResource("3_kk2ga")]
 layout_mode = 2

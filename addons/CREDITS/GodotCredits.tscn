@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmmk31d282i46"]
+[gd_scene load_steps=3 format=3 uid="uid://cmmk31d282i46"]
 
 [ext_resource type="Script" uid="uid://b3saavvpq3nvj" path="res://addons/CREDITS/GodotCredits.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="2_igs2b"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
+title_font = ExtResource("2_igs2b")
+text_font = ExtResource("2_igs2b")
 
 [node name="CreditsContainer" type="Control" parent="."]
 anchors_preset = 0

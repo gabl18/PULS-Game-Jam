@@ -1,8 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://5p7rwmamekw3"]
+[gd_scene load_steps=22 format=3 uid="uid://5p7rwmamekw3"]
 
 [ext_resource type="Texture2D" uid="uid://c4fn37uqm0k5r" path="res://assets/Art/Computer.png" id="1_012xi"]
-[ext_resource type="Script" path="res://UI/opening_scene.gd" id="1_pw2v0"]
+[ext_resource type="Script" uid="uid://cikql3070fx4" path="res://UI/opening_scene.gd" id="1_pw2v0"]
 [ext_resource type="Texture2D" uid="uid://3dqb1jmrjjql" path="res://assets/Art/Credits.png" id="3_5v63d"]
+[ext_resource type="Texture2D" uid="uid://bxg8fmtgs6rfn" path="res://assets/Art/Computer_Shade.png" id="3_p0ovk"]
+[ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="5_t15b3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hy3e"]
+atlas = ExtResource("1_012xi")
+region = Rect2(0, 0, 200, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lberx"]
+atlas = ExtResource("3_p0ovk")
+region = Rect2(0, 0, 69, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v63d"]
 atlas = ExtResource("3_5v63d")
@@ -23,6 +33,14 @@ region = Rect2(1015, 0, 145, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ldhc"]
 atlas = ExtResource("3_5v63d")
 region = Rect2(1450, 0, 145, 100)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n6hmc"]
+font = ExtResource("5_t15b3")
+font_size = 50
+outline_size = 10
+outline_color = Color(0.177288, 0.515726, 0.801042, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 0.321569)
 
 [sub_resource type="Animation" id="Animation_t15b3"]
 length = 0.001
@@ -212,6 +230,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Color(0.0768358, 0.0768358, 0.0768358, 1)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect:texture:region")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 200, 112)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("TextureRect/Control/TextureRect:texture:region")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 69, 38)]
+}
 
 [sub_resource type="Animation" id="Animation_5v63d"]
 resource_name = "Starting_Zoom"
@@ -240,11 +282,42 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(2.85101, 2.85101)]
 }
 
+[sub_resource type="Animation" id="Animation_lberx"]
+resource_name = "flicker"
+length = 4.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.75, 3.01, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 200, 112), Rect2(200, 0, 200, 112), Rect2(400, 0, 200, 112), Rect2(600, 0, 200, 112)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Control/TextureRect:texture:region")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.75, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 69, 38), Rect2(69, 0, 69, 38), Rect2(138, 0, 69, 38), Rect2(207, 0, 69, 38)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t15b3"]
 _data = {
 &"Logos_Fading": SubResource("Animation_n6hmc"),
 &"RESET": SubResource("Animation_p0ovk"),
-&"Starting_Zoom": SubResource("Animation_5v63d")
+&"Starting_Zoom": SubResource("Animation_5v63d"),
+&"flicker": SubResource("Animation_lberx")
 }
 
 [node name="OpeningScene" type="Node2D"]
@@ -262,7 +335,7 @@ scale = Vector2(2.85101, 2.85101)
 pivot_offset = Vector2(373.326, 78.7152)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("1_012xi")
+texture = SubResource("AtlasTexture_0hy3e")
 stretch_mode = 4
 
 [node name="Control" type="Control" parent="CanvasLayer/TextureRect"]
@@ -284,6 +357,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_lberx")
 
 [node name="MainGameLogo" type="TextureRect" parent="CanvasLayer/TextureRect/Control"]
 layout_mode = 1
@@ -347,10 +429,12 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_2ldhc")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
+offset_top = -30.5
+offset_bottom = 30.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_bottom = 20
@@ -358,7 +442,8 @@ theme_override_constants/margin_bottom = 20
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
-text = "Press Any to start"
+text = "PRESS ANY KEY TO START"
+label_settings = SubResource("LabelSettings_n6hmc")
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -374,4 +459,3 @@ root_node = NodePath("../CanvasLayer")
 libraries = {
 &"": SubResource("AnimationLibrary_t15b3")
 }
-speed_scale = 0.1
