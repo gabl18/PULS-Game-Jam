@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Jam"
+run/main_scene="uid://cyjxo07gym830"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [input]
@@ -23,9 +24,19 @@ Credits_Speed_Up={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Collision"
+2d_physics/layer_4="Laser_Collision"
+2d_physics/layer_5="Laser_Mirroring"
+
 [maaacks_credits_scene]
 
 disable_plugin_dialogues=true
+
+[physics]
+
+2d/default_gravity=0.0
 
 [rendering]
 
