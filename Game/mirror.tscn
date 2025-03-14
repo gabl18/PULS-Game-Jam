@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b0q0guenk0tli"]
+
+[node name="Mirror" type="RigidBody2D" groups=["Mirrors"]]
+collision_layer = 17
+collision_mask = 17
