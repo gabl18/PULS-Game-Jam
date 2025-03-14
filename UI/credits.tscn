@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdc3ra37a6mpe"]
 
-[ext_resource type="Script" uid="uid://dka5hvxrx4n4r" path="res://UI/credits.gd" id="1_2g780"]
+[ext_resource type="Script" path="res://addons/credits.gd" id="1_2g780"]
 [ext_resource type="Texture2D" uid="uid://c1nm1h0mwv76y" path="res://assets/Art/button_9patch.png" id="1_uuuvy"]
 [ext_resource type="LabelSettings" uid="uid://crmxhf77knfiu" path="res://assets/Fonts/UI_Font_Basic.tres" id="2_kk2ga"]
 [ext_resource type="PackedScene" uid="uid://cmmk31d282i46" path="res://addons/CREDITS/GodotCredits.tscn" id="3_kk2ga"]

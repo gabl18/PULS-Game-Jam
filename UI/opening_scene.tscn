@@ -1,7 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ku7whdgqfyjr"]
+[gd_scene load_steps=16 format=3 uid="uid://5p7rwmamekw3"]
 
 [ext_resource type="Texture2D" uid="uid://c4fn37uqm0k5r" path="res://assets/Art/Computer.png" id="1_012xi"]
-[ext_resource type="Script" uid="uid://cikql3070fx4" path="res://UI/opening_scene.gd" id="1_pw2v0"]
+[ext_resource type="Script" path="res://UI/opening_scene.gd" id="1_pw2v0"]
 [ext_resource type="Texture2D" uid="uid://3dqb1jmrjjql" path="res://assets/Art/Credits.png" id="3_5v63d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5v63d"]
@@ -316,10 +316,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = 1.0
-offset_right = -72.0
-offset_bottom = 1.0
+offset_left = -73.0434
+offset_top = -13.4613
+offset_right = -73.0434
+offset_bottom = 16.5388
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_t15b3")
@@ -329,8 +329,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 80.0
-offset_right = 80.0
+offset_left = 87.9522
+offset_top = -2.23716
+offset_right = 38.9521
+offset_bottom = -1.23714
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_n6hmc")
@@ -345,6 +347,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_2ldhc")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
