@@ -29,4 +29,7 @@ License: [GNU General Public License version 2](https://opensource.org/licenses/
 #### Godot Credits Scene
 Author: [Marek Belski](https://github.com/Maaack/Godot-Credits-Scene/graphs/contributors)  
 Source: [github: Godot-Credits-Scene](https://github.com/Maaack/Godot-Credits-Scene)  
-License: [MIT License](LICENSE.txt)  
+License: [MIT License](LICENSE.txt)
+
+### Used Assets
+Font: [montjuic](https://rugikong.itch.io/montjuic)
