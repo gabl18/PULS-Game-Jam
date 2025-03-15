@@ -14,7 +14,8 @@ func _input(event: InputEvent) -> void:
 		started = true
 		
 		AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
-		audio_player.volume_db = linear_to_db(0.5)
+		AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
+		audio_player.volume_db = linear_to_db(0.25)
 		audio_player2.play()
 		#AudioServer.set_bus_effect_enabled(bus_index, 0, true)
 		animation_player.speed_scale = 0.1
@@ -30,7 +31,7 @@ func _input(event: InputEvent) -> void:
 			pass
 		else:
 			await tree_entered
-		get_tree().change_scene_to_file('res://UI/Main.tscn')
+		get_tree().change_scene_to_file('res://UI/menu.tscn')
 
 func _ready() -> void:
 	texture_rect.scale = Vector2(1,1)
@@ -38,7 +39,7 @@ func _ready() -> void:
 	$CanvasLayer/TextureRect/Control/JamCred.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/Jam.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/OurCred.modulate.a = 0
-	audio_player.volume_db = linear_to_db(0.25)
+	audio_player.volume_db = linear_to_db(0.1)
 	animation_player.speed_scale = 1
 	animation_player.play('flicker')
 	

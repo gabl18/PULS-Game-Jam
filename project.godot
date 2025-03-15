@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="Jam"
-run/main_scene="uid://cyjxo07gym830"
+run/main_scene="uid://5p7rwmamekw3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+config/dynamic_fonts/use_oversampling=true
+
+[audio]
+
+buses/default_bus_layout="uid://cglcd8jbvw252"
+general/default_playback_type.web=0
+driver/driver="Use WebAssembly Audio"
 
 [input]
 
