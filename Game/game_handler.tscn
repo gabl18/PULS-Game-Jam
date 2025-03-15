@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=6 format=3 uid="uid://21h4aul1x2vi"]
 
-[ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
+[ext_resource type="PackedScene" uid="uid://g48qs1vpmqtt" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
+[ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="5_jjiyw"]
 
 [node name="GameHandler" type="Control"]
 layout_mode = 3
@@ -36,6 +37,12 @@ layout_mode = 1
 
 [node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
 z_index = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jjiyw")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
