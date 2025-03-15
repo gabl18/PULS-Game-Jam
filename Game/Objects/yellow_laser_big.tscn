@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://ijadicnlk28m"]
+
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="1_ffl0j"]
+[ext_resource type="PackedScene" uid="uid://go524sy2t8s0" path="res://Game/laser_component.tscn" id="2_tjilf"]
+[ext_resource type="Texture2D" uid="uid://batrlhg13v36i" path="res://assets/Art/Lasers.png" id="3_gg8v3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0kji"]
+atlas = ExtResource("3_gg8v3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gccqr"]
+atlas = ExtResource("3_gg8v3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7het8"]
+atlas = ExtResource("3_gg8v3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ffl0j"]
+points = PackedVector2Array(22, -41, 40, -25, 40, 25, 22, 41, -22, 41, -40, 25, -40, -25, -22, -41)
+
+[node name="YellowLaserBig" type="Node2D"]
+
+[node name="MoveableObject" parent="." node_paths=PackedStringArray("laser_component") instance=ExtResource("1_ffl0j")]
+moveable = false
+laser_component = NodePath("Laser_Component")
+
+[node name="Laser_Component" parent="MoveableObject" node_paths=PackedStringArray("sprite") instance=ExtResource("2_tjilf")]
+position = Vector2(60, 0)
+sprite = NodePath("../Sprite2D")
+opt_texture_on = SubResource("AtlasTexture_b0kji")
+opt_texture_off = SubResource("AtlasTexture_gccqr")
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveableObject"]
+position = Vector2(1, 1)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_7het8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("ConvexPolygonShape2D_ffl0j")
+
+[connection signal="laser_collision_changed" from="MoveableObject" to="MoveableObject/Laser_Component" method="_collision_laser"]
