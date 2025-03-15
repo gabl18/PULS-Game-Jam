@@ -21,6 +21,10 @@ buses/default_bus_layout="uid://cglcd8jbvw252"
 general/default_playback_type.web=0
 driver/driver="Use WebAssembly Audio"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 Credits_Speed_Up={
