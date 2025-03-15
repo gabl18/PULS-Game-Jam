@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
 [ext_resource type="Shader" uid="uid://cvmkia14jwcs4" path="res://Game/Broken.gdshader" id="1_w5cwh"]
-[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/Levels/level_0.tscn" id="2_jjiyw"]
+[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/level0.tscn" id="2_jjiyw"]
 [ext_resource type="PackedScene" uid="uid://cpjfo3084tesq" path="res://Game/Levels/level_1.tscn" id="3_jidiu"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
 [ext_resource type="PackedScene" uid="uid://cnv26vhhfhdwm" path="res://Game/Levels/level_2.tscn" id="4_2eoy2"]
-[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
+[ext_resource type="Shader" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="Texture2D" uid="uid://cr3peepe5dnsp" path="res://assets/Art/Cracks.png" id="4_jidiu"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
 [ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
@@ -117,6 +117,7 @@ mouse_filter = 2
 texture = ExtResource("6_ns6wn")
 
 [node name="CrackTexture" type="TextureRect" parent="."]
+visible = false
 texture_filter = 2
 material = SubResource("ShaderMaterial_2tksy")
 layout_mode = 1
