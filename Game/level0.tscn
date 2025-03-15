@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=3 uid="uid://cyjxo07gym830"]
 
 [ext_resource type="PackedScene" uid="uid://b0q0guenk0tli" path="res://Game/mirror.tscn" id="2_ic0td"]
-[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="4_euy0k"]
-[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="5_41fh5"]
-[ext_resource type="Script" uid="uid://bcsvsxbflg0ll" path="res://Game/laser_.gd" id="6_41fh5"]
+[ext_resource type="PackedScene" path="res://Game/moveable_object.tscn" id="4_euy0k"]
+[ext_resource type="PackedScene" path="res://Game/unmoveable_object.tscn" id="5_41fh5"]
+[ext_resource type="Script" path="res://Game/laser_.gd" id="6_41fh5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxm2b"]
 distance = -649.0

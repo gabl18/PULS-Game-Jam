@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://cglcd8jbvw252"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://cglcd8jbvw252"]
 
 [sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
 resource_name = "Distortion"
@@ -8,6 +8,13 @@ resource_name = "Filter"
 cutoff_hz = 1000.0
 resonance = 1.0
 gain = 0.2
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -30.0
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_j3pel"]
+resource_name = "Chorus"
 
 [resource]
 bus/1/name = &"Music"
@@ -20,6 +27,10 @@ bus/1/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
 bus/1/effect/0/enabled = false
 bus/1/effect/1/effect = SubResource("AudioEffectFilter_j3pel")
 bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectChorus_j3pel")
+bus/1/effect/3/enabled = false
 bus/2/name = &"SFX"
 bus/2/solo = false
 bus/2/mute = false

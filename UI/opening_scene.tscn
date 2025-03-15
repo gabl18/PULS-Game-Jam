@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bxg8fmtgs6rfn" path="res://assets/Art/Computer_Shade.png" id="3_p0ovk"]
 [ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="5_t15b3"]
 [ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="6_n6hmc"]
-[ext_resource type="AudioStream" uid="uid://dpwvbnxxe3ixn" path="res://assets/Audio/Sfx/win-10.wav" id="7_2ldhc"]
+[ext_resource type="AudioStream" uid="uid://byos8epcikrog" path="res://assets/Audio/Sfx/win-10.ogg" id="7_2ldhc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hy3e"]
 atlas = ExtResource("1_012xi")
@@ -144,6 +144,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.0768358, 0.0768358, 0.0768358, 1), Color(0.0768358, 0.0768358, 0.0768358, 1), Color(0.226707, 0.226707, 0.226707, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = false
+tracks/5/path = NodePath("TextureRect/Control/TextureRect:texture:region")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.135033, 0.15, 0.16, 0.407048, 0.422081, 0.437048, 0.447048, 0.564611, 0.579643, 0.594611, 0.604611, 0.758795, 0.773828, 0.788795, 0.798795),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 69, 38), Rect2(69, 0, 69, 38), Rect2(138, 0, 69, 38), Rect2(207, 0, 69, 38), Rect2(0, 0, 69, 38), Rect2(69, 0, 69, 38), Rect2(138, 0, 69, 38), Rect2(207, 0, 69, 38), Rect2(0, 0, 69, 38), Rect2(69, 0, 69, 38), Rect2(138, 0, 69, 38), Rect2(207, 0, 69, 38), Rect2(0, 0, 69, 38), Rect2(69, 0, 69, 38), Rect2(138, 0, 69, 38), Rect2(207, 0, 69, 38), Rect2(0, 0, 69, 38)]
 }
 
 [sub_resource type="Animation" id="Animation_p0ovk"]
@@ -461,12 +473,14 @@ root_node = NodePath("../CanvasLayer")
 libraries = {
 &"": SubResource("AnimationLibrary_t15b3")
 }
+speed_scale = 0.1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n6hmc")
-volume_db = -10.0
+volume_db = -30.0
 autoplay = true
 bus = &"Music"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2ldhc")
+volume_db = -10.0
