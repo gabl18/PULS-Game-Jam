@@ -3,8 +3,8 @@ extends Node2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var texture_rect: TextureRect = $CanvasLayer/TextureRect
 @onready var label: Label = $CanvasLayer/MarginContainer/Label
-@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var audio_player2: AudioStreamPlayer = $AudioStreamPlayer2
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 @onready var music_bus_id = AudioServer.get_bus_index("Music")
 @onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
 
@@ -15,8 +15,8 @@ func _input(event: InputEvent) -> void:
 		
 		AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 		AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
-		audio_player.volume_db = linear_to_db(0.5)
-		audio_player2.play()
+		music_player.volume_db = linear_to_db(0.5)
+		sfx_player.play()
 		#AudioServer.set_bus_effect_enabled(bus_index, 0, true)
 		animation_player.speed_scale = 0.1
 		animation_player.play('Starting_Zoom')
@@ -39,7 +39,7 @@ func _ready() -> void:
 	$CanvasLayer/TextureRect/Control/JamCred.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/Jam.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/OurCred.modulate.a = 0
-	audio_player.volume_db = linear_to_db(0.25)
+	music_player.volume_db = linear_to_db(0.35)
 	animation_player.speed_scale = 1
 	animation_player.play('flicker')
 	

@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://cyjxo07gym830"]
+
+[ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_dc782"]
+[ext_resource type="PackedScene" uid="uid://b0q0guenk0tli" path="res://Game/mirror.tscn" id="2_ic0td"]
+[ext_resource type="Texture2D" uid="uid://cu4f5ujriiiqo" path="res://assets/Art/Box_Moveable.png" id="3_41fh5"]
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="4_euy0k"]
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="5_41fh5"]
+[ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="5_euy0k"]
+[ext_resource type="PackedScene" uid="uid://ijadicnlk28m" path="res://Game/Objects/yellow_laser_big.tscn" id="6_41fh5"]
+[ext_resource type="PackedScene" uid="uid://bjd1jbocxd1vh" path="res://Game/Objects/red_laser_big.tscn" id="7_v3lyr"]
+[ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="8_4lrle"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxm2b"]
+distance = -649.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mb8ys"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_euy0k"]
+normal = Vector2(0, 1)
+distance = 25.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_41fh5"]
+normal = Vector2(-1, 0)
+distance = -1153.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3lyr"]
+size = Vector2(52, 52)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_euy0k"]
+radius = 71.007
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dc782"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_dc782")
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 9
+collision_mask = 9
+
+[node name="BorderSouth" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_sxm2b")
+
+[node name="BorderWest" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_mb8ys")
+
+[node name="BorderNorth" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_euy0k")
+
+[node name="BorderEast" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_41fh5")
+
+[node name="Mirror" parent="." instance=ExtResource("2_ic0td")]
+position = Vector2(814, 430)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mirror"]
+position = Vector2(-846, -412)
+polygon = PackedVector2Array(857, 309, 811, 479, 842, 479, 899, 314)
+
+[node name="MoveableObject" parent="." instance=ExtResource("4_euy0k")]
+position = Vector2(179, 222)
+collision_layer = 17
+collision_mask = 1
+with_laser = false
+is_mirror = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveableObject"]
+position = Vector2(9, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_41fh5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
+visible = false
+shape = SubResource("RectangleShape2D_v3lyr")
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("5_41fh5")]
+position = Vector2(506, 553)
+collision_layer = 17
+collision_mask = 1
+with_laser = false
+is_mirror = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_euy0k")
+
+[node name="BlueLaserBig2" parent="." instance=ExtResource("5_euy0k")]
+position = Vector2(564, 113)
+
+[node name="MoveableObject" parent="BlueLaserBig2" index="0"]
+collision_mask = 1
+
+[node name="BlueLaserBig" parent="." instance=ExtResource("5_euy0k")]
+position = Vector2(343, 240)
+
+[node name="MoveableObject" parent="BlueLaserBig" index="0"]
+collision_mask = 1
+
+[node name="Laser_Component" parent="BlueLaserBig/MoveableObject" index="0"]
+always_on = false
+
+[node name="YellowLaserBig" parent="." instance=ExtResource("6_41fh5")]
+position = Vector2(879, 158)
+
+[node name="MoveableObject" parent="YellowLaserBig" index="0"]
+collision_mask = 1
+
+[node name="RedLaserBig" parent="." instance=ExtResource("7_v3lyr")]
+position = Vector2(285, 441)
+rotation = 0.586809
+
+[node name="UnmoveableCollider" parent="RedLaserBig" index="0"]
+collision_mask = 1
+
+[node name="Laser_Component" parent="RedLaserBig/UnmoveableCollider" index="0"]
+always_on = false
+
+[node name="Light" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("5_41fh5")]
+position = Vector2(85, 60)
+collision_mask = 1
+light_component = NodePath("LightUp_Component")
+
+[node name="LightUp_Component" parent="Light" instance=ExtResource("8_4lrle")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light"]
+shape = SubResource("CircleShape2D_dc782")
+
+[node name="Light2" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("5_41fh5")]
+position = Vector2(79, 306)
+collision_mask = 1
+light_component = NodePath("LightUp_Component")
+
+[node name="LightUp_Component" parent="Light2" instance=ExtResource("8_4lrle")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light2"]
+shape = SubResource("CircleShape2D_dc782")
+
+[connection signal="laser_collision_changed" from="Light" to="Light/LightUp_Component" method="_collision_laser"]
+[connection signal="laser_collision_changed" from="Light2" to="Light2/LightUp_Component" method="_collision_laser"]
+
+[editable path="BlueLaserBig2"]
+[editable path="BlueLaserBig"]
+[editable path="YellowLaserBig"]
+[editable path="RedLaserBig"]

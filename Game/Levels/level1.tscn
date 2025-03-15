@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://c0stxujg0lsej"]
+
+[ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_w0mm3"]
+[ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="2_esthv"]
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="3_57ac3"]
+[ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="4_40f6r"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_40f6r"]
+distance = -649.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2q4nd"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e7xya"]
+normal = Vector2(0, 1)
+distance = 20.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mcqsb"]
+normal = Vector2(-1, 0)
+distance = -1153.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_40f6r"]
+radius = 52.6118
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_w0mm3")
+metadata/_custom_type_script = "uid://dkqvdks7i3tro"
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 9
+collision_mask = 9
+
+[node name="BorderSouth" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_40f6r")
+
+[node name="BorderWest" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_2q4nd")
+
+[node name="BorderNorth" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_e7xya")
+
+[node name="BorderEast" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_mcqsb")
+
+[node name="BlueLaserBig" parent="." instance=ExtResource("2_esthv")]
+position = Vector2(215, 263)
+
+[node name="UnmoveableCollider" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("3_57ac3")]
+light_component = NodePath("LightUp_Component")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+position = Vector2(480, 492)
+shape = SubResource("CircleShape2D_40f6r")
+
+[node name="LightUp_Component" parent="UnmoveableCollider" instance=ExtResource("4_40f6r")]
+position = Vector2(480, 492)

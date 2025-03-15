@@ -475,11 +475,12 @@ libraries = {
 }
 speed_scale = 0.1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_n6hmc")
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_2ldhc")
 bus = &"SFX"
