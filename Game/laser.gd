@@ -33,8 +33,8 @@ func _process(delta: float) -> void:
 			if not coll.is_in_group("Mirrors"):
 				break
 			
-			var normal = ray.get_collision_normal()
-			
+			var normal = ray.get_collision_normal().normalized()
+
 			if normal == Vector2.ZERO:
 				break
 				
@@ -50,8 +50,12 @@ func _process(delta: float) -> void:
 			prev.set_collision_layer_value(5,false)
 			prev.set_collision_layer_value(4,false)
 			
+			var incident_vector = (pt - global_position).normalized()
+			
 			ray.global_position = pt
-			ray.target_position = ray.target_position.bounce(normal)
+
+			ray.target_position = pt + incident_vector.bounce(normal).normalized() * 10000
+
 			ray.force_raycast_update()
 			
 			prev.set_collision_mask_value(5,true)
