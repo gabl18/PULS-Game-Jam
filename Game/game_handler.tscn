@@ -1,12 +1,12 @@
 [gd_scene load_steps=16 format=3 uid="uid://21h4aul1x2vi"]
 
-[ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
+[ext_resource type="PackedScene" uid="uid://g48qs1vpmqtt" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
-[ext_resource type="Shader" path="res://Game/Broken.gdshader" id="1_w5cwh"]
-[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/level0.tscn" id="2_jjiyw"]
+[ext_resource type="Shader" uid="uid://cvmkia14jwcs4" path="res://Game/Broken.gdshader" id="1_w5cwh"]
+[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/Levels/level0.tscn" id="2_jjiyw"]
 [ext_resource type="PackedScene" uid="uid://c0stxujg0lsej" path="res://Game/Levels/level1.tscn" id="3_hin1r"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
-[ext_resource type="Shader" path="res://Game/tilescale.gdshader" id="4_al6wf"]
+[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
 [ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
 [ext_resource type="Texture2D" uid="uid://bo510brdntkm3" path="res://assets/Art/Fenster.png" id="6_ns6wn"]
@@ -76,15 +76,6 @@ layout_mode = 1
 [node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
 z_index = 4
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -119.0
-offset_bottom = 26.0
-grow_horizontal = 0
-
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -132,6 +123,15 @@ bus = &"Music"
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_jidiu")
 bus = &"SFX"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -119.0
+offset_bottom = 26.0
+grow_horizontal = 0
 
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
