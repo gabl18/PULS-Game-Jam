@@ -102,4 +102,3 @@ vertical_alignment = 1
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/GridContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/GridContainer/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
-[connection signal="gui_input" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_gui_input"]

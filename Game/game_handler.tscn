@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://21h4aul1x2vi"]
+
+[ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
+[ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
+[ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
+[ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
+
+[node name="GameHandler" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_eu5t0")
+
+[node name="Level_Container" type="Node2D" parent="."]
+
+[node name="menu" parent="." node_paths=PackedStringArray("credits", "options") instance=ExtResource("1_8npcb")]
+visible = false
+layout_mode = 1
+credits = NodePath("../Credits")
+options = NodePath("../Options")
+
+[node name="ColorRect" parent="menu" index="0"]
+color = Color(0.219608, 0.219608, 0.235294, 0.85098)
+
+[node name="Options" parent="." instance=ExtResource("4_jjiyw")]
+visible = false
+layout_mode = 1
+
+[node name="Credits" parent="." instance=ExtResource("3_wga2q")]
+visible = false
+layout_mode = 1
+
+[node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
+z_index = 4
+
+[connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
+[connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
+
+[editable path="menu"]
+[editable path="Options"]
+[editable path="Credits"]

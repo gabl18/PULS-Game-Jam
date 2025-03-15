@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://g48qs1vpmqtt"]
+[gd_scene load_steps=4 format=3 uid="uid://cfdp28nuqw3as"]
 
 [ext_resource type="Script" uid="uid://c7xibt53f8jfn" path="res://UI/menu.gd" id="1_4hkxj"]
 [ext_resource type="Texture2D" uid="uid://c1nm1h0mwv76y" path="res://assets/Art/button_9patch.png" id="2_qmqfe"]
@@ -40,7 +40,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 30
 alignment = 2
 
-[node name="StartButton" type="NinePatchRect" parent="MarginContainer/VBoxContainer"]
+[node name="ContinueButton" type="NinePatchRect" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -52,7 +52,7 @@ patch_margin_top = 22
 patch_margin_right = 17
 patch_margin_bottom = 20
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/StartButton"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContinueButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,6 +118,6 @@ label_settings = ExtResource("3_e05sn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="gui_input" from="MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_gui_input"]
-[connection signal="gui_input" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_quit_button_gui_input"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_gui_input"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_gui_input"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_gui_input"]
