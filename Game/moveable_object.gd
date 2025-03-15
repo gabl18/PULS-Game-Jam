@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var moveable: bool = true
 
 @export var laser_component: LaserComponent
+@export var light_component: LightComponent
 
 @export_group('Collision')
 @export var with_laser := true:
@@ -30,7 +31,6 @@ extends CharacterBody2D
 	set(value):
 		with_objects = value
 		set_collision_layer_value(1,value)
-		set_collision_mask_value(1,value)
 	
 @warning_ignore('unused_signal')
 signal laser_collided(laser,entered:bool)
@@ -53,6 +53,9 @@ var rotation_offset: float = 0.0  # Stores the initial rotation offset
 
 func _ready() -> void:
 	laser_collided.connect(_handle_lasers)
+	
+	if light_component:
+		laser_collision_changed.connect(light_component._collision_laser)
 
 func _handle_lasers(laser,entered:bool):
 	if entered:
@@ -69,6 +72,7 @@ func _handle_lasers(laser,entered:bool):
 
 func _process(delta: float) -> void:
 	if dragged and moveable:
+		
 		# Calculate the target position (mouse position + offset)
 		target_position = get_global_mouse_position() + offset
 
@@ -86,6 +90,7 @@ func _input(event: InputEvent) -> void:
 			if not event.is_pressed():
 				# Stop dragging when the left mouse button is released
 				dragged = false
+				set_collision_mask_value(1,false)
 		elif event.button_index == MOUSE_BUTTON_RIGHT and rotateable:#
 			if  not event.is_pressed():
 				# Start rotating when the right mouse button is pressed
@@ -99,6 +104,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if event.is_pressed():
 				# Start dragging when the left mouse button is pressed
 				dragged = true
+				set_collision_mask_value(1,true)
 				offset = global_position - get_global_mouse_position()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and rotateable:
 			if event.is_pressed():

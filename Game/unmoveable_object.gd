@@ -2,6 +2,7 @@
 extends RigidBody2D
 
 @export var laser_component: LaserComponent
+@export var light_component: LightComponent
 
 @export_group('Collision')
 @export var with_laser := true:
@@ -27,7 +28,6 @@ extends RigidBody2D
 	set(value):
 		with_objects = value
 		set_collision_layer_value(1,value)
-		set_collision_mask_value(1,value)
 	
 @warning_ignore('unused_signal')
 signal laser_collided(laser,entered:bool)
@@ -42,6 +42,9 @@ var is_laser_colliding := false:
 
 func _ready() -> void:
 	laser_collided.connect(_handle_lasers)
+	
+	if light_component:
+		laser_collision_changed.connect(light_component._collision_laser)
 
 func _handle_lasers(laser,entered:bool):
 	if entered:

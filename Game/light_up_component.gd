@@ -1,4 +1,12 @@
 extends Node2D
+class_name LightComponent
 
-func _collision_laser():
-	print(1)
+var on := false
+
+
+func _ready() -> void:
+	add_to_group('Lights')
+	
+
+func _collision_laser(entered:bool):
+	on = entered

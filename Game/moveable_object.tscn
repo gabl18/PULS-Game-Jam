@@ -4,6 +4,7 @@
 
 [node name="MoveableObject" type="CharacterBody2D"]
 collision_layer = 9
+collision_mask = 0
 input_pickable = true
 script = ExtResource("1_0buwq")
 
