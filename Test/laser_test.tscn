@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7n0jsme84tnd"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_npudn"]
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="2_s7m12"]
+[ext_resource type="Script" uid="uid://csccl83x3p4yn" path="res://Test/Laser.gd" id="3_qsnvt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j8nun"]
+distance = -521.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_npudn"]
+normal = Vector2(-0.99987, -0.0161269)
+distance = -955.021
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucwky"]
+
+[node name="LaserTest" type="Node2D"]
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("1_npudn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+shape = SubResource("WorldBoundaryShape2D_j8nun")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="UnmoveableCollider"]
+shape = SubResource("WorldBoundaryShape2D_npudn")
+
+[node name="MoveableObject" parent="." instance=ExtResource("2_s7m12")]
+position = Vector2(217, 183)
+scale = Vector2(2.76, 2.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
+shape = SubResource("RectangleShape2D_ucwky")
+
+[node name="RayCast2D" type="RayCast2D" parent="MoveableObject"]
+position = Vector2(0, 0.36232)
+scale = Vector2(0.362319, 0.362319)
+script = ExtResource("3_qsnvt")
+
+[node name="IN" type="Line2D" parent="MoveableObject/RayCast2D"]
+width = 4.0
+default_color = Color(0, 1, 1, 1)
+
+[node name="Normal" type="Line2D" parent="MoveableObject/RayCast2D"]
+width = 3.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="Out" type="Line2D" parent="MoveableObject/RayCast2D"]
+width = 4.0
+default_color = Color(1, 0, 0, 1)
