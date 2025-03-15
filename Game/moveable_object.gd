@@ -2,6 +2,9 @@
 extends CharacterBody2D
 
 @export var rotateable: bool = true
+@export var moveable: bool = true
+
+@export var laser_component: LaserComponent
 
 @export_group('Collision')
 @export var with_laser := true:
@@ -12,7 +15,6 @@ extends CharacterBody2D
 		if with_laser:
 			is_mirror = false
 		set_collision_layer_value(4,value)
-		set_collision_mask_value(4,value)
 		
 @export var is_mirror := false:
 	set(value):
@@ -23,13 +25,23 @@ extends CharacterBody2D
 		else:
 			remove_from_group('Mirrors')
 		set_collision_layer_value(5,value)
-		set_collision_mask_value(5,value)
 		
 @export var with_objects := true:
 	set(value):
 		with_objects = value
 		set_collision_layer_value(1,value)
 		set_collision_mask_value(1,value)
+	
+@warning_ignore('unused_signal')
+signal laser_collided(laser,entered:bool)
+signal laser_collision_changed(entered:bool)
+
+var colliding_lasers: Array
+var is_laser_colliding := false:
+	set(value):
+		if value != is_laser_colliding:
+			laser_collision_changed.emit(value)
+		is_laser_colliding = value
 
 var dragged = false
 var offset: Vector2
@@ -39,8 +51,24 @@ var rotate_speed: float = 5.0  # Adjust for faster/slower rotation
 var is_rotating: bool = false
 var rotation_offset: float = 0.0  # Stores the initial rotation offset
 
+func _ready() -> void:
+	laser_collided.connect(_handle_lasers)
+
+func _handle_lasers(laser,entered:bool):
+	if entered:
+		if not (laser_component and laser == laser_component.laser):
+				
+			colliding_lasers.append(laser)
+		else:
+			print(1)
+	else:
+		if laser in colliding_lasers:
+			colliding_lasers.erase(laser)
+	
+	is_laser_colliding = colliding_lasers.size() != 0
+
 func _process(delta: float) -> void:
-	if dragged:
+	if dragged and moveable:
 		# Calculate the target position (mouse position + offset)
 		target_position = get_global_mouse_position() + offset
 
@@ -54,7 +82,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT and moveable:
 			if not event.is_pressed():
 				# Stop dragging when the left mouse button is released
 				dragged = false
@@ -67,7 +95,7 @@ func _input(event: InputEvent) -> void:
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 
-		if event.button_index == MOUSE_BUTTON_LEFT:
+		if event.button_index == MOUSE_BUTTON_LEFT and moveable:
 			if event.is_pressed():
 				# Start dragging when the left mouse button is pressed
 				dragged = true

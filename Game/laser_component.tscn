@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://go524sy2t8s0"]
+
+[ext_resource type="Script" uid="uid://dtqiw7f6oeer2" path="res://Game/laser_component.gd" id="1_3q584"]
+[ext_resource type="Script" uid="uid://bcsvsxbflg0ll" path="res://Game/laser_.gd" id="2_dthxl"]
+
+[node name="Laser_Component" type="Node2D"]
+script = ExtResource("1_3q584")
+
+[node name="Line2D" type="Line2D" parent="."]
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Laser" type="RayCast2D" parent="." node_paths=PackedStringArray("line")]
+visible = false
+exclude_parent = false
+target_position = Vector2(56, 0)
+collision_mask = 24
+script = ExtResource("2_dthxl")
+line = NodePath("../Line2D")

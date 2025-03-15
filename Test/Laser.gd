@@ -21,8 +21,6 @@ func _process(delta):
 		# Calculate the correct reflection vector
 		var reflection_vector = incident_vector.bounce(collision_normal)
 
-		# Output the reflection vector
-		print("Reflection Vector: ", reflection_vector)
 
 		# Clear previous lines
 		line_in.clear_points()

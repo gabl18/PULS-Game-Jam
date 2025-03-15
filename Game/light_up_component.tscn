@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0ytmy6ihprh4"]
+
+[ext_resource type="Script" uid="uid://b0h1rwpe2vkm3" path="res://Game/light_up_component.gd" id="1_2g0gg"]
+
+[node name="LightUp_Component" type="Node2D"]
+script = ExtResource("1_2g0gg")
