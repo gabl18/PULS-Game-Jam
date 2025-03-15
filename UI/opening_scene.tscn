@@ -1,10 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://5p7rwmamekw3"]
+[gd_scene load_steps=24 format=3 uid="uid://5p7rwmamekw3"]
 
 [ext_resource type="Texture2D" uid="uid://c4fn37uqm0k5r" path="res://assets/Art/Computer.png" id="1_012xi"]
 [ext_resource type="Script" uid="uid://cikql3070fx4" path="res://UI/opening_scene.gd" id="1_pw2v0"]
 [ext_resource type="Texture2D" uid="uid://3dqb1jmrjjql" path="res://assets/Art/Credits.png" id="3_5v63d"]
 [ext_resource type="Texture2D" uid="uid://bxg8fmtgs6rfn" path="res://assets/Art/Computer_Shade.png" id="3_p0ovk"]
 [ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="5_t15b3"]
+[ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="6_n6hmc"]
+[ext_resource type="AudioStream" uid="uid://dpwvbnxxe3ixn" path="res://assets/Audio/Sfx/win-10.wav" id="7_2ldhc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0hy3e"]
 atlas = ExtResource("1_012xi")
@@ -459,3 +461,12 @@ root_node = NodePath("../CanvasLayer")
 libraries = {
 &"": SubResource("AnimationLibrary_t15b3")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_n6hmc")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_2ldhc")
