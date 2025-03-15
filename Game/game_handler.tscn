@@ -1,9 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=14 format=3 uid="uid://21h4aul1x2vi"]
 
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
+[ext_resource type="Shader" uid="uid://cvmkia14jwcs4" path="res://Game/Broken.gdshader" id="1_w5cwh"]
+[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/Levels/level0.tscn" id="2_jjiyw"]
+[ext_resource type="PackedScene" uid="uid://c0stxujg0lsej" path="res://Game/Levels/level1.tscn" id="3_hin1r"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
+[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
+[ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
+[ext_resource type="Texture2D" uid="uid://bo510brdntkm3" path="res://assets/Art/Fenster.png" id="6_ns6wn"]
+[ext_resource type="Texture2D" uid="uid://b5ip75j5idpnj" path="res://assets/Art/Crack5.png" id="11_2tksy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ns6wn"]
+shader = ExtResource("4_al6wf")
+shader_parameter/uv_scale = Vector2(0.3, 0.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tksy"]
+shader = ExtResource("1_w5cwh")
+shader_parameter/crack_depth = 2.236
+shader_parameter/crack_scale = 4.0
+shader_parameter/crack_zebra_scale = 2.67
+shader_parameter/crack_zebra_amp = 1.3
+shader_parameter/crack_profile = 1.0
+shader_parameter/crack_slope = 45.8
+shader_parameter/crack_width = 0.001
+shader_parameter/refraction_offset = Vector2(25, 25)
+shader_parameter/reflection_offset = Vector2(1, 1)
+shader_parameter/reflection_color = Color(0.588, 0.588, 0.588, 0.5)
 
 [node name="GameHandler" type="Control"]
 layout_mode = 3
@@ -14,8 +38,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_eu5t0")
+levels = Array[PackedScene]([ExtResource("2_jjiyw"), ExtResource("3_hin1r")])
 
-[node name="Level_Container" type="Node2D" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ns6wn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_uxdc5")
+stretch_mode = 1
+
+[node name="Level_Container" type="Node2D" parent="TextureRect"]
+unique_name_in_owner = true
 
 [node name="menu" parent="." node_paths=PackedStringArray("credits", "options") instance=ExtResource("1_8npcb")]
 visible = false
@@ -37,8 +74,56 @@ layout_mode = 1
 [node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
 z_index = 4
 
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -119.0
+offset_bottom = 26.0
+grow_horizontal = 0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_ns6wn")
+
+[node name="Crack" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -493.0
+offset_top = 1.0
+offset_right = -202.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_2tksy")
+expand_mode = 1
+
+[node name="CrackTexture" type="TextureRect" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_2tksy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_2tksy")
+
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
+[connection signal="gui_input" from="Control" to="menu" method="_on_back_button_gui_input"]
 
 [editable path="menu"]
 [editable path="Options"]
