@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1")
 title_font = ExtResource("2_igs2b")
 text_font = ExtResource("2_igs2b")
@@ -18,6 +19,7 @@ text_font = ExtResource("2_igs2b")
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="Line" type="Label" parent="CreditsContainer"]
 layout_mode = 1

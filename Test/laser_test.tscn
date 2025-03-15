@@ -26,7 +26,6 @@ shape = SubResource("WorldBoundaryShape2D_npudn")
 [node name="MoveableObject" parent="." instance=ExtResource("2_s7m12")]
 position = Vector2(217, 183)
 scale = Vector2(2.76, 2.76)
-moveable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
 shape = SubResource("RectangleShape2D_ucwky")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdc3ra37a6mpe"]
 
-[ext_resource type="Script" uid="uid://dka5hvxrx4n4r" path="res://UI/credits.gd" id="1_2g780"]
+[ext_resource type="Script" uid="uid://gkegue6140hm" path="res://UI/credits.gd" id="1_2g780"]
 [ext_resource type="Texture2D" uid="uid://c1nm1h0mwv76y" path="res://assets/Art/button_9patch.png" id="1_uuuvy"]
 [ext_resource type="LabelSettings" uid="uid://crmxhf77knfiu" path="res://assets/Fonts/UI_Font_Basic.tres" id="2_kk2ga"]
 [ext_resource type="PackedScene" uid="uid://cmmk31d282i46" path="res://addons/CREDITS/GodotCredits.tscn" id="3_kk2ga"]
@@ -23,17 +23,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.709804, 0.698039, 0.698039, 0.921569)
 
-[node name="CreditsBox" parent="." instance=ExtResource("3_kk2ga")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 1102.0
-offset_bottom = 598.0
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,4 +69,15 @@ label_settings = ExtResource("2_kk2ga")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="gui_input" from="MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_button_gui_input"]
+[node name="CreditsBox" parent="." instance=ExtResource("3_kk2ga")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1102.0
+offset_bottom = 598.0
+title_size = 40
+text_size = 30
+line_time = 0.7

@@ -10,7 +10,7 @@ var old_collisions: Array
 
 var on:bool
 
-func _process(delta):
+func _process(_delta):
 	old_collisions = collisions.duplicate()
 	collisions.clear()
 	line.clear_points()

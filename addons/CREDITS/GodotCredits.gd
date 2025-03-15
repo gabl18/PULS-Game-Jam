@@ -5,6 +5,8 @@ class_name CreditsBox
 @export var text_color := Color.WHITE
 @export var title_font : FontFile = null
 @export var text_font : FontFile = null
+@export var title_size: int
+@export var text_size: int
 
 @export var section_time := 2.0
 @export var line_time := 0.3
@@ -102,11 +104,15 @@ func add_line():
 		if title_font != null:
 			new_line.set("theme_override_fonts/font", title_font)
 		new_line.set("theme_override_colors/font_color", title_color)
+		if title_size != null:
+			new_line.set("theme_override_font_sizes/font_size", title_size)
 	
 	else:
 		if text_font != null:
 			new_line.set("theme_override_fonts/font", text_font)
 		new_line.set("theme_override_colors/font_color", text_color)
+		if text_size != null:
+			new_line.set("theme_override_font_sizes/font_size", text_size)
 	
 	$CreditsContainer.add_child(new_line)
 	
