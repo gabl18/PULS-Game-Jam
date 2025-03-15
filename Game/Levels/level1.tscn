@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0stxujg0lsej"]
 
-[ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_w0mm3"]
+[ext_resource type="Script" path="res://Game/level.gd" id="1_w0mm3"]
 [ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="2_esthv"]
 [ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="3_57ac3"]
 [ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="4_40f6r"]
