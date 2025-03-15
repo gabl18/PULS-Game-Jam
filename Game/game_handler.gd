@@ -24,7 +24,7 @@ func play_level(index:int):
 
 	## Congrats Scene
 	
-	play_level(index + 0)
+	play_level(index + 1)
 	
 func load_level(level:PackedScene):
 	unload_level()
