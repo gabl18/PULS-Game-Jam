@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpjfo3084tesq"]
+
+[ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_615i5"]
+[ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="2_auaak"]
+[ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="3_hxy2c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1dpfp"]
+distance = -649.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_88uh3"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n0f71"]
+normal = Vector2(0, 1)
+distance = 20.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t4bmb"]
+normal = Vector2(-1, 0)
+distance = -1153.0
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_615i5")
+crack = -1
+metadata/_edit_lock_ = true
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 9
+collision_mask = 9
+
+[node name="BorderSouth" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_1dpfp")
+
+[node name="BorderWest" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_88uh3")
+
+[node name="BorderNorth" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_n0f71")
+
+[node name="BorderEast" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_t4bmb")
+
+[node name="BlueLaserBig" parent="." instance=ExtResource("2_auaak")]
+position = Vector2(215, 263)
+
+[node name="RedLight" parent="." instance=ExtResource("3_hxy2c")]
+position = Vector2(65, 105)

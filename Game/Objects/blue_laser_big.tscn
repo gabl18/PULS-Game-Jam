@@ -22,7 +22,6 @@ size = Vector2(80, 80)
 [node name="BlueLaserBig" type="Node2D"]
 
 [node name="MoveableObject" parent="." node_paths=PackedStringArray("laser_component") instance=ExtResource("1_mop30")]
-moveable = true
 laser_component = NodePath("Laser_Component")
 
 [node name="Laser_Component" parent="MoveableObject" node_paths=PackedStringArray("sprite") instance=ExtResource("2_vclev")]

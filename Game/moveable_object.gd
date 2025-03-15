@@ -47,7 +47,7 @@ var dragged = false
 var offset: Vector2
 var target_position: Vector2
 var drag_speed: float = 30.0  # Adjust for faster/slower movement
-var rotate_speed: float = 5.0  # Adjust for faster/slower rotation
+var rotate_speed: float = 30.0  # Adjust for faster/slower rotation
 var is_rotating: bool = false
 var rotation_offset: float = 0.0  # Stores the initial rotation offset
 

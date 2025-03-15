@@ -50,7 +50,7 @@ func _process(_delta):
 			var incident_vector = (collision_point - global_position).normalized()
 
 			# Calculate the correct reflection vector
-			var reflection_vector = incident_vector.bounce(collision_normal)
+			var reflection_vector = incident_vector.bounce(collision_normal.normalized())
 
 			line.add_point(line.to_local(collision_point))
 

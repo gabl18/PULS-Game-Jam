@@ -115,15 +115,15 @@ vec4 generate_cracks(vec2 uv) {
         U *= 1.5;
     }
     color *= crack_color;
-	
+
 	return color;
 }
 
 
-void fragment() {	
+void fragment() {
 	vec4 tex_color = texture(TEXTURE, UV);
 	float threshold = 0.1;
-	
+
 	if (tex_color.r == 0.0 && tex_color.g == 0.0 && tex_color.b == 0.0 && tex_color.a == 1.0 / 255.0 ){
 			COLOR =  generate_cracks(UV);
 	vec4 orig_color = COLOR;
@@ -135,5 +135,5 @@ void fragment() {
 	}
 	}
 
-	
+
 }

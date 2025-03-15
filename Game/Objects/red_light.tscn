@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8b1k55ealin2"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_gr3s0"]
+[ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="2_jvt7e"]
+[ext_resource type="Texture2D" uid="uid://dfltrbggw1v0p" path="res://assets/Art/Lights.png" id="3_1ilfo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fc28"]
+atlas = ExtResource("3_1ilfo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unihe"]
+atlas = ExtResource("3_1ilfo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i3gy"]
+size = Vector2(56, 56)
+
+[node name="RedLight" type="Node2D"]
+
+[node name="Light" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("1_gr3s0")]
+collision_mask = 1
+light_component = NodePath("LightUp_Component")
+
+[node name="LightUp_Component" parent="Light" node_paths=PackedStringArray("sprite") instance=ExtResource("2_jvt7e")]
+sprite = NodePath("../Sprite2D")
+texture_off = SubResource("AtlasTexture_1fc28")
+
+[node name="Sprite2D" type="Sprite2D" parent="Light"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_unihe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Light"]
+visible = false
+shape = SubResource("RectangleShape2D_2i3gy")

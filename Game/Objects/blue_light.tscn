@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn47ocf266lj0"]
+
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="1_fx67p"]
+[ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="2_jt4j5"]
+[ext_resource type="Texture2D" uid="uid://dfltrbggw1v0p" path="res://assets/Art/Lights.png" id="3_gicsa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt4j5"]
+atlas = ExtResource("3_gicsa")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gicsa"]
+atlas = ExtResource("3_gicsa")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i3gy"]
+size = Vector2(56, 56)
+
+[node name="BlueLight" type="Node2D"]
+
+[node name="MoveableObject" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("1_fx67p")]
+light_component = NodePath("LightUp_Component")
+
+[node name="LightUp_Component" parent="MoveableObject" node_paths=PackedStringArray("sprite") instance=ExtResource("2_jt4j5")]
+sprite = NodePath("../Sprite2D")
+texture_off = SubResource("AtlasTexture_jt4j5")
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveableObject"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gicsa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
+visible = false
+shape = SubResource("RectangleShape2D_2i3gy")

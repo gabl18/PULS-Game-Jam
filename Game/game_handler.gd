@@ -4,9 +4,11 @@ extends Control
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 @onready var music_bus_id = AudioServer.get_bus_index("Music")
 @onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
+@onready var crack_texture: TextureRect = $CrackTexture
 
 
 @export var levels : Array[PackedScene]
+@export var cracks: Array[Texture2D]
 
 var level_instance: Level
 
@@ -20,11 +22,19 @@ func play_level(index:int):
 	
 	load_level(levels[index])
 	
+	if level_instance.crack == -1:
+		crack_texture.hide()
+	else:
+		print(level_instance.crack)
+		crack_texture.show()
+		crack_texture.texture = cracks[level_instance.crack]
+	
+	
 	await level_instance.finished_level
 
 	## Congrats Scene
 	
-	play_level(index + 0)
+	play_level(index + 1)
 	
 func load_level(level:PackedScene):
 	unload_level()

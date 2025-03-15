@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2spus410snec"]
+
+[ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_i3qqm"]
+[ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="2_is7jd"]
+[ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="3_vnx5f"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n42vc"]
+distance = -649.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yj2ie"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7q00q"]
+normal = Vector2(0, 1)
+distance = 20.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4dvtc"]
+normal = Vector2(-1, 0)
+distance = -1153.0
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_i3qqm")
+crack = 3
+metadata/_edit_lock_ = true
+
+[node name="Border" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 9
+collision_mask = 9
+
+[node name="BorderSouth" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_n42vc")
+
+[node name="BorderWest" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_yj2ie")
+
+[node name="BorderNorth" type="CollisionShape2D" parent="Border"]
+shape = SubResource("WorldBoundaryShape2D_7q00q")
+
+[node name="BorderEast" type="CollisionShape2D" parent="Border"]
+visible = false
+shape = SubResource("WorldBoundaryShape2D_4dvtc")
+
+[node name="Cracks" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Crack4" type="CollisionPolygon2D" parent="Cracks"]
+polygon = PackedVector2Array(513, 88, 513, 187, 535, 109, 604, 0, 473, 0, 413, 59, 477, 12, 492, 50, 485, 75)
+
+[node name="Crack3" type="CollisionPolygon2D" parent="Cracks"]
+polygon = PackedVector2Array(507, 634, 471, 598, 532, 566, 597, 550, 681, 539, 641, 562, 701, 593, 725, 595, 669, 622, 675, 643)
+
+[node name="Crack31" type="CollisionPolygon2D" parent="Cracks"]
+polygon = PackedVector2Array(159, 638, 236, 553, 339, 497, 344, 482, 368, 470, 377, 415, 460, 365, 394, 289, 463, 340, 496, 384, 516, 371, 584, 400, 578, 446, 539, 422, 456, 467, 403, 519, 381, 512, 354, 498, 256, 566, 169, 648)
+
+[node name="Crack32" type="CollisionPolygon2D" parent="Cracks"]
+polygon = PackedVector2Array(916, 642, 949, 627, 949, 600, 1108, 559, 1148, 536, 1150, 643)
+
+[node name="Crack33" type="CollisionPolygon2D" parent="Cracks"]
+polygon = PackedVector2Array(1148, 280, 1005, 290, 1148, 267)
+
+[node name="BlueLaserBig" parent="." instance=ExtResource("2_is7jd")]
+position = Vector2(633, 274)
+
+[node name="RedLight" parent="." instance=ExtResource("3_vnx5f")]
+position = Vector2(1056, 53)
