@@ -66,7 +66,7 @@ position = Vector2(151, 546)
 collision_mask = 1
 
 [node name="RedLight" parent="." instance=ExtResource("7_ds0my")]
-position = Vector2(1071, 529)
+position = Vector2(1100, 464)
 
 [node name="RedLaserBig" parent="." instance=ExtResource("7_v3lyr")]
 position = Vector2(44, 81)

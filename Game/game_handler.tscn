@@ -1,16 +1,17 @@
-[gd_scene load_steps=31 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=32 format=3 uid="uid://21h4aul1x2vi"]
 
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
 [ext_resource type="PackedScene" uid="uid://t85skhc3ctg0" path="res://Game/Levels/level_0.tscn" id="2_c2tff"]
-[ext_resource type="PackedScene" uid="uid://cpjfo3084tesq" path="res://Game/Levels/level_1.tscn" id="3_jidiu"]
+[ext_resource type="PackedScene" uid="uid://edpojvlg17x4" path="res://Game/Levels/level_1.tscn" id="3_jidiu"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
 [ext_resource type="PackedScene" uid="uid://cnv26vhhfhdwm" path="res://Game/Levels/level_2.tscn" id="4_2eoy2"]
-[ext_resource type="Shader" path="res://Game/tilescale.gdshader" id="4_al6wf"]
+[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="Texture2D" uid="uid://cr3peepe5dnsp" path="res://assets/Art/Cracks.png" id="4_jidiu"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
 [ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
 [ext_resource type="PackedScene" uid="uid://cgycosfgcu5qn" path="res://Game/Levels/level_6.tscn" id="5_2eoy2"]
+[ext_resource type="PackedScene" uid="uid://cpjfo3084tesq" path="res://Game/Levels/level_2_2.tscn" id="5_ce87w"]
 [ext_resource type="PackedScene" uid="uid://c2spus410snec" path="res://Game/Levels/level_3.tscn" id="5_qe32i"]
 [ext_resource type="PackedScene" uid="uid://byktkgh36d3rh" path="res://Game/Levels/level_4.tscn" id="6_c2tff"]
 [ext_resource type="Texture2D" uid="uid://bo510brdntkm3" path="res://assets/Art/Fenster.png" id="6_ns6wn"]
@@ -116,7 +117,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_eu5t0")
-levels = Array[PackedScene]([ExtResource("2_c2tff"), ExtResource("3_jidiu"), ExtResource("4_2eoy2"), ExtResource("5_qe32i"), ExtResource("6_c2tff"), ExtResource("7_qe32i"), ExtResource("5_2eoy2")])
+levels = Array[PackedScene]([ExtResource("2_c2tff"), ExtResource("3_jidiu"), ExtResource("4_2eoy2"), ExtResource("5_ce87w"), ExtResource("5_qe32i"), ExtResource("6_c2tff"), ExtResource("7_qe32i"), ExtResource("5_2eoy2")])
 cracks = Array[Texture2D]([SubResource("AtlasTexture_2eoy2"), SubResource("AtlasTexture_1ybsf"), SubResource("AtlasTexture_c2tff"), SubResource("AtlasTexture_qe32i"), SubResource("AtlasTexture_ce87w")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -190,6 +191,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("AtlasTexture_jidiu")
 
 [node name="Control" type="Control" parent="."]
@@ -200,6 +202,13 @@ anchor_right = 1.0
 offset_left = -119.0
 offset_bottom = 26.0
 grow_horizontal = 0
+
+[node name="Cutscene_Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1908.0
+offset_top = 260.0
+offset_right = 1948.0
+offset_bottom = 300.0
 
 [node name="Monitor_Transition" type="TextureRect" parent="."]
 visible = false
@@ -225,7 +234,7 @@ bus = &"SFX"
 libraries = {
 &"": SubResource("AnimationLibrary_hukpe")
 }
-speed_scale = 2.0
+speed_scale = 3.0
 
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]

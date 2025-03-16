@@ -1,16 +1,12 @@
 extends Node2D
-class_name Cutscene1
+class_name Cutscene
 
 @onready var sfx_player: AudioStreamPlayer = $SFXPlayer
 @onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
 @onready var music_bus_id = AudioServer.get_bus_index("Music")
 @onready var animation_player: AnimationPlayer = $CanvasLayer/AnimationPlayer
 
-#@export var animation_player: AnimationPlayer
-
 signal _continue
-
-var done := false
 
 func play_sfx(sound_path: String):
 	sfx_player.stream = load(sound_path)
@@ -23,9 +19,5 @@ func _ready() -> void:
 	animation_player.play('pc_smash')
 	await animation_player.animation_finished
 	play_sfx("res://assets/Audio/Sfx/destroy.ogg")
-
-	
-
-func __continue(_n):
-	if done:
-		_continue.emit()
+	await get_tree().create_timer(2).timeout
+	_continue.emit()
