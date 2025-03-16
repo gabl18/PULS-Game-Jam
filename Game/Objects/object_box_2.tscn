@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cegb1rvbnrumc"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_ui64t"]
+[ext_resource type="Texture2D" uid="uid://cdd56ldve1tpk" path="res://assets/Art/Objects.png" id="2_635ce"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0uf8"]
+atlas = ExtResource("2_635ce")
+region = Rect2(300, 450, 150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7qrt"]
+size = Vector2(79, 80)
+
+[node name="ObjectBox2" type="Node2D"]
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("1_ui64t")]
+
+[node name="Sprite2D" type="Sprite2D" parent="UnmoveableCollider"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_h0uf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_p7qrt")

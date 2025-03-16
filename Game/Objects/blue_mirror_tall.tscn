@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8tdrlso8wq58"]
+
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="1_mbtxe"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ttk4i"]
+load_path = "res://.godot/imported/Objects.png-5e19de1d138185ef91d908a2176ea493.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fopb4"]
+atlas = SubResource("CompressedTexture2D_ttk4i")
+region = Rect2(300, 300, 150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdtna"]
+size = Vector2(98, 270)
+
+[node name="BlueMirrorTall" type="Node2D"]
+
+[node name="MoveableObject3" parent="." instance=ExtResource("1_mbtxe")]
+collision_layer = 17
+with_laser = false
+is_mirror = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveableObject3"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_fopb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject3"]
+position = Vector2(-1, -9)
+shape = SubResource("RectangleShape2D_sdtna")

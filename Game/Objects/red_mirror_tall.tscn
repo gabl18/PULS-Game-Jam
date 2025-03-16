@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://crj8irlguvofx"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_hqp0x"]
+[ext_resource type="Texture2D" uid="uid://0kfqq16c1sna" path="res://assets/Art/Aseprite/Objects.png" id="2_yoyvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iadyd"]
+atlas = ExtResource("2_yoyvs")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0w51e"]
+size = Vector2(80, 124)
+
+[node name="RedMirrorTall" type="Node2D"]
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("1_hqp0x")]
+collision_layer = 17
+with_laser = false
+is_mirror = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UnmoveableCollider"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_iadyd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+visible = false
+shape = SubResource("RectangleShape2D_0w51e")

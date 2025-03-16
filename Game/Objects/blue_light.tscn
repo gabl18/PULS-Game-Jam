@@ -20,7 +20,7 @@ size = Vector2(56, 56)
 [node name="MoveableObject" parent="." node_paths=PackedStringArray("light_component") instance=ExtResource("1_fx67p")]
 light_component = NodePath("LightUp_Component")
 
-[node name="LightUp_Component" parent="MoveableObject" node_paths=PackedStringArray("sprite") instance=ExtResource("2_jt4j5")]
+[node name="LightUp_Component" parent="MoveableObject" node_paths=PackedStringArray("sprite") groups=["Lights"] instance=ExtResource("2_jt4j5")]
 sprite = NodePath("../Sprite2D")
 texture_off = SubResource("AtlasTexture_jt4j5")
 

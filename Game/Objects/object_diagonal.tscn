@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://xhuf47xi3jmh"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_3m8yt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r68sy"]
+load_path = "res://.godot/imported/Objects.png-5e19de1d138185ef91d908a2176ea493.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m8yt"]
+atlas = SubResource("CompressedTexture2D_r68sy")
+region = Rect2(600, 450, 150, 150)
+
+[node name="ObjectDiagonal" type="Node2D"]
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("1_3m8yt")]
+
+[node name="Sprite2D" type="Sprite2D" parent="UnmoveableCollider"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_3m8yt")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="UnmoveableCollider"]
+visible = false
+polygon = PackedVector2Array(16, -98, 84, -98, 86, -89, -2, 94, -8, 98, -72, 98, -78, 90, 12, -96)

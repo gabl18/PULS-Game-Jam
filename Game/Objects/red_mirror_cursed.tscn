@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpm51wmrg8hyp"]
+
+[ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_dcuaj"]
+[ext_resource type="Texture2D" uid="uid://0kfqq16c1sna" path="res://assets/Art/Aseprite/Objects.png" id="2_5um1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iux3x"]
+atlas = ExtResource("2_5um1d")
+region = Rect2(600, 0, 150, 150)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_xkmig"]
+points = PackedVector2Array(26, -36, -1, -42, -32, -42, -95, -24, -86, -1, -92, 30, -92, 64, -36, 64, 30, 50, 81, 50, 89, 42, 89, 20, 83, 11, 87, 3, 88, -32, 79, -40, 48, -40)
+
+[node name="RedMirrorCursed" type="Node2D"]
+
+[node name="UnmoveableCollider" parent="." instance=ExtResource("1_dcuaj")]
+collision_layer = 17
+with_laser = false
+is_mirror = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UnmoveableCollider"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_iux3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
+visible = false
+position = Vector2(1, 0)
+shape = SubResource("ConvexPolygonShape2D_xkmig")

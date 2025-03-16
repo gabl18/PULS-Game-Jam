@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://70nygxdpmwen"]
+
+[ext_resource type="PackedScene" uid="uid://7a8inwld47tl" path="res://Game/moveable_object.tscn" id="1_h81d2"]
+[ext_resource type="Texture2D" uid="uid://cdd56ldve1tpk" path="res://assets/Art/Objects.png" id="2_sexr2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojxfl"]
+atlas = ExtResource("2_sexr2")
+region = Rect2(0, 150, 150, 150)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgcde"]
+size = Vector2(80, 80)
+
+[node name="YellowMirrorTiny" type="Node2D"]
+
+[node name="MoveableObject" parent="." instance=ExtResource("1_h81d2")]
+collision_layer = 17
+moveable = false
+with_laser = false
+is_mirror = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MoveableObject"]
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ojxfl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveableObject"]
+visible = false
+shape = SubResource("RectangleShape2D_hgcde")
