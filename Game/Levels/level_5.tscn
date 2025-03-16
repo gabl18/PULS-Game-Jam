@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cy2tufwauwx81"]
+[gd_scene load_steps=17 format=3 uid="uid://cy2tufwauwx81"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_ndsjq"]
 [ext_resource type="PackedScene" uid="uid://dn47ocf266lj0" path="res://Game/Objects/blue_light.tscn" id="2_2is5m"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://crj8irlguvofx" path="res://Game/Objects/red_mirror_tall.tscn" id="10_saa40"]
 [ext_resource type="PackedScene" uid="uid://3g8a3djgl56a" path="res://Game/Objects/object_big.tscn" id="11_b4wh5"]
 [ext_resource type="PackedScene" uid="uid://70nygxdpmwen" path="res://Game/Objects/yellow_mirror_tiny.tscn" id="12_ocq31"]
-[ext_resource type="PackedScene" uid="uid://7w4i5uxxayro" path="res://Game/Objects/blue_mirror_long.tscn" id="13_ocq31"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n42vc"]
 distance = -649.0
@@ -142,7 +141,7 @@ position = Vector2(464, 130)
 rotation = -0.154129
 
 [node name="ObjectTall" parent="." instance=ExtResource("7_wtlhy")]
-position = Vector2(375, 127)
+position = Vector2(333, 132)
 
 [node name="ObjectBox2" parent="." instance=ExtResource("8_qosor")]
 position = Vector2(989, 387)
@@ -170,9 +169,5 @@ rotation = 1.56545
 [node name="YellowMirrorTiny" parent="." instance=ExtResource("12_ocq31")]
 position = Vector2(628, 73)
 rotation = -0.735465
-
-[node name="BlueMirrorLong" parent="." instance=ExtResource("13_ocq31")]
-position = Vector2(816, 47)
-rotation = 1.15515
 
 [editable path="YellowLaserBig"]

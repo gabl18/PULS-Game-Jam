@@ -28,20 +28,13 @@ func play_sfx(sound_path: String):
 	#sfx_player.connect("finished", sfx_player.queue_free)  # Löscht sich nach Abspielen selbst
 	
 func _ready() -> void:
-	
-	#### SCREEEN ZAPPING 
-	# the code is here when the screen should zap 
-	# so start the zapping animation here
-	# e.g. animation_player.play('zap')
-	
+	AudioServer.set_bus_volume_db(music_bus_id, linear_to_db(0.05))
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
 	play_transition_on()
-	
-	play_level(0)
-	music_player.volume_db = linear_to_db(0.5)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
+	play_level(0)
 	
 func play_transition_off():
 	monitor_transition.visible = true

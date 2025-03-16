@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lr5xfr13mkb0"]
+[gd_scene load_steps=10 format=3 uid="uid://tvhce5avbeov"]
 
 [ext_resource type="Script" uid="uid://i5uqtdfyk8kf" path="res://UI/cutscene_1.gd" id="1_8b0eg"]
 [ext_resource type="Texture2D" uid="uid://cnvpn3iy5wpvh" path="res://assets/Art/computer_smash.png" id="2_pgvwx"]

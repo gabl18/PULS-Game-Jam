@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cpjfo3084tesq"]
+[gd_scene load_steps=20 format=3 uid="uid://dtebjgntwln0s"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_615i5"]
 [ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="3_hxy2c"]

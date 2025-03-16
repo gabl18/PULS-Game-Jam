@@ -130,7 +130,7 @@ position = Vector2(961, 364)
 rotation = -0.983389
 
 [node name="ObjectVeryLong3" parent="." instance=ExtResource("7_n2gga")]
-position = Vector2(657, 163)
+position = Vector2(674, 199)
 rotation = -0.354198
 
 [node name="ObjectVeryLong4" parent="." instance=ExtResource("7_n2gga")]
