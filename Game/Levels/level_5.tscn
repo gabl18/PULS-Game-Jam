@@ -1,8 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://cy2tufwauwx81"]
+[gd_scene load_steps=18 format=3 uid="uid://cy2tufwauwx81"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_ndsjq"]
-[ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="2_yc02l"]
-[ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="3_qvcrg"]
+[ext_resource type="PackedScene" uid="uid://dn47ocf266lj0" path="res://Game/Objects/blue_light.tscn" id="2_2is5m"]
+[ext_resource type="PackedScene" uid="uid://ijadicnlk28m" path="res://Game/Objects/yellow_laser_big.tscn" id="3_adddq"]
+[ext_resource type="PackedScene" uid="uid://bjd1jbocxd1vh" path="res://Game/Objects/red_laser_big.tscn" id="4_b4wh5"]
+[ext_resource type="PackedScene" uid="uid://bu7oc3vdenxmr" path="res://Game/Objects/red_mirror_wide.tscn" id="5_ocq31"]
+[ext_resource type="PackedScene" uid="uid://le7nltj555cr" path="res://Game/Objects/object_very_long.tscn" id="6_h57qu"]
+[ext_resource type="PackedScene" uid="uid://boug82hhf6vfp" path="res://Game/Objects/object_tall.tscn" id="7_wtlhy"]
+[ext_resource type="PackedScene" uid="uid://cegb1rvbnrumc" path="res://Game/Objects/object_box_2.tscn" id="8_qosor"]
+[ext_resource type="PackedScene" uid="uid://bft1prbnlmwwf" path="res://Game/Objects/blue_mirror_tiny.tscn" id="9_dkhnq"]
+[ext_resource type="PackedScene" uid="uid://crj8irlguvofx" path="res://Game/Objects/red_mirror_tall.tscn" id="10_saa40"]
+[ext_resource type="PackedScene" uid="uid://3g8a3djgl56a" path="res://Game/Objects/object_big.tscn" id="11_b4wh5"]
+[ext_resource type="PackedScene" uid="uid://70nygxdpmwen" path="res://Game/Objects/yellow_mirror_tiny.tscn" id="12_ocq31"]
+[ext_resource type="PackedScene" uid="uid://7w4i5uxxayro" path="res://Game/Objects/blue_mirror_long.tscn" id="13_ocq31"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n42vc"]
 distance = -649.0
@@ -88,8 +98,81 @@ polygon = PackedVector2Array(199, 274, 247, 214, 266, 250, 302, 252, 316, 222, 3
 [node name="Crack12" type="CollisionPolygon2D" parent="Cracks"]
 polygon = PackedVector2Array(283, 646, 344, 616, 396, 601, 468, 567, 543, 548, 591, 530, 601, 552, 532, 568, 496, 563, 310, 646)
 
-[node name="BlueLaserBig" parent="." instance=ExtResource("2_yc02l")]
-position = Vector2(633, 274)
+[node name="BlueLight" parent="." instance=ExtResource("2_2is5m")]
+position = Vector2(121, 51)
+rotation = -0.067279
 
-[node name="RedLight" parent="." instance=ExtResource("3_qvcrg")]
-position = Vector2(77, 91)
+[node name="BlueLight2" parent="." instance=ExtResource("2_2is5m")]
+position = Vector2(885, 566)
+
+[node name="BlueLight3" parent="." instance=ExtResource("2_2is5m")]
+position = Vector2(203, 422)
+
+[node name="YellowLaserBig" parent="." instance=ExtResource("3_adddq")]
+position = Vector2(1087, 469)
+rotation = 2.63351
+metadata/_edit_group_ = true
+
+[node name="Laser_Component" parent="YellowLaserBig/MoveableObject" index="1"]
+always_on = false
+
+[node name="RedLaserBig" parent="." instance=ExtResource("4_b4wh5")]
+position = Vector2(1073, 43)
+rotation = 1.61646
+
+[node name="RedMirrorWide" parent="." instance=ExtResource("5_ocq31")]
+position = Vector2(19, 619)
+rotation = 0.763594
+
+[node name="ObjectVeryLong" parent="." instance=ExtResource("6_h57qu")]
+position = Vector2(189, 208)
+
+[node name="ObjectVeryLong2" parent="." instance=ExtResource("6_h57qu")]
+position = Vector2(439, 211)
+
+[node name="ObjectVeryLong3" parent="." instance=ExtResource("6_h57qu")]
+position = Vector2(619, 500)
+rotation = -0.0142304
+
+[node name="ObjectVeryLong4" parent="." instance=ExtResource("6_h57qu")]
+position = Vector2(834, 447)
+
+[node name="YellowLaserBig2" parent="." instance=ExtResource("3_adddq")]
+position = Vector2(464, 130)
+rotation = -0.154129
+
+[node name="ObjectTall" parent="." instance=ExtResource("7_wtlhy")]
+position = Vector2(375, 127)
+
+[node name="ObjectBox2" parent="." instance=ExtResource("8_qosor")]
+position = Vector2(989, 387)
+rotation = 0.612042
+
+[node name="BlueMirrorTiny" parent="." instance=ExtResource("9_dkhnq")]
+position = Vector2(903, 161)
+
+[node name="RedLaserBig2" parent="." instance=ExtResource("4_b4wh5")]
+position = Vector2(102, 300)
+rotation = 0.856428
+
+[node name="RedMirrorTall" parent="." instance=ExtResource("10_saa40")]
+position = Vector2(379, 669)
+rotation = 1.40686
+
+[node name="RedMirrorWide2" parent="." instance=ExtResource("5_ocq31")]
+position = Vector2(1084, 610)
+rotation = -0.604446
+
+[node name="ObjectBig" parent="." instance=ExtResource("11_b4wh5")]
+position = Vector2(790, 161)
+rotation = 1.56545
+
+[node name="YellowMirrorTiny" parent="." instance=ExtResource("12_ocq31")]
+position = Vector2(628, 73)
+rotation = -0.735465
+
+[node name="BlueMirrorLong" parent="." instance=ExtResource("13_ocq31")]
+position = Vector2(816, 47)
+rotation = 1.15515
+
+[editable path="YellowLaserBig"]

@@ -8,16 +8,18 @@ extends Control
 @onready var notification_container: Control = $Notification_Container
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var monitor_transition: TextureRect = $Monitor_Transition
+@onready var cutscene_container: Control = $Cutscene_Container
 
 const NOTIFICATION = preload("res://UI/notification.tscn")
+const CUTSCENE_1 = preload("res://UI/cutscene1.tscn")
 
 @export var levels : Array[PackedScene]
 @export var cracks: Array[Texture2D]
 
 var notification_instance: Notification
 var level_instance: Level
+var cutscene_instance: Cutscene
 
-####TEST
 
 func play_sfx(sound_path: String):
 	sfx_player.stream = load(sound_path)
@@ -34,17 +36,28 @@ func _ready() -> void:
 	
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
-	monitor_transition.visible = true
-	animation_player.play('monitor_zap')
-	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
-	await animation_player.animation_finished
-	monitor_transition.visible = false
+	play_transition_on()
 	
 	play_level(0)
 	music_player.volume_db = linear_to_db(0.5)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
+func play_transition_off():
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap')
+	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
+	await animation_player.animation_finished
+	monitor_transition.visible = false
+
+func play_transition_on():
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap_start')
+	play_sfx("res://assets/Audio/Sfx/on_off.ogg")
+	await animation_player.animation_finished
+	monitor_transition.visible = false
+	
+
 func play_level(index:int):
 	
 	#### GAMETIME
@@ -57,7 +70,6 @@ func play_level(index:int):
 		crack_texture.texture = cracks[level_instance.crack]
 		#play_sfx("res://assets/Audio/Sfx/crack_more.ogg")
 
-	
 	await level_instance.finished_level
 
 	#### NOTIFICATION
@@ -75,25 +87,24 @@ func play_level(index:int):
 	
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
-	monitor_transition.visible = true
-	animation_player.play('monitor_zap')
-	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
-	await animation_player.animation_finished
-	monitor_transition.visible = false
+	if level_instance.cutscene:
+		await play_transition_off()
+	else: 
+		await play_transition_off()
+		play_transition_on()
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
 	#### Cut Scene
 	# The Levels have a property "Cut Scene", this should be true when a cutscene (the punching one) should be played
 	if level_instance.cutscene:
-		# cutscene start here
-		# e.g. animation_player.play('cutscene')
-		pass
-		#await animation_player.animation_finished
-		
-		##### SCREEN ZAPPING
-		# after the animation it should zap again
+		cutscene_instance = CUTSCENE_1.instantiate()
+		cutscene_container.add_child(cutscene_instance)
 
+		await cutscene_instance._continue
+		cutscene_instance.queue_free()
+		
+		play_transition_on()
 	
 	#####NEXT LEVEL
 	play_level(index + 1)
