@@ -9,6 +9,7 @@ extends Control
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var monitor_transition: TextureRect = $Monitor_Transition
 @onready var cutscene_container: Control = $Cutscene_Container
+@onready var crack_player: AudioStreamPlayer = $CrackPlayer
 
 const NOTIFICATION = preload("res://UI/notification.tscn")
 const CUTSCENE_1 = preload("res://UI/cutscene1.tscn")
@@ -31,7 +32,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(music_bus_id, linear_to_db(0.05))
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
-	play_transition_on()
+	await play_transition_off()
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	play_level(0)
@@ -61,8 +62,8 @@ func play_level(index:int):
 	else:
 		crack_texture.show()
 		crack_texture.texture = cracks[level_instance.crack]
-		#play_sfx("res://assets/Audio/Sfx/crack_more.ogg")
-
+		crack_player.play()
+		
 	await level_instance.finished_level
 
 	#### NOTIFICATION
@@ -96,6 +97,7 @@ func play_level(index:int):
 
 		await cutscene_instance._continue
 		cutscene_instance.queue_free()
+		await play_sfx("res://assets/Audio/Sfx/error.ogg")
 		
 		play_transition_on()
 	

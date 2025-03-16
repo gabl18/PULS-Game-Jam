@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=33 format=3 uid="uid://21h4aul1x2vi"]
 
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="12_7ksrt"]
 [ext_resource type="Texture2D" uid="uid://br63dj7xbcf4q" path="res://assets/Art/Monitor_Transition.png" id="16_qe32i"]
 [ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="17_c2tff"]
+[ext_resource type="AudioStream" uid="uid://dp3y0vivvjrrb" path="res://assets/Audio/Sfx/crack_more.ogg" id="20_boet6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eoy2"]
 atlas = ExtResource("4_jidiu")
@@ -229,6 +230,11 @@ bus = &"Music"
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_c2tff")
 bus = &"SFX"
+
+[node name="CrackPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_boet6")
+volume_db = -30.0
+bus = &"Crack"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
