@@ -29,7 +29,8 @@ var lines := []
 
 var credits = [
 	[
-		"Laser Game"
+		"Lasersplinter",
+		"a game by"
 	],[
 		"Programming",
 		"Michael",
@@ -39,16 +40,18 @@ var credits = [
 		"Gabriel",
 		"Michael"
 	],[
-		"Music",
-		"https://tallbeard.itch.io/music-loop-bundle"
+		"Credits Director",
+		"Leo"
 	],[
 		"Testers",
 		"Felix",
 		"Noah",
 		"Melanie"
 	],[
+		"Music",
+		"https://tallbeard.itch.io/music-loop-bundle"
+	],[
 		"Sound Effects",
-		"https://pixabay.com/sound-effects/punch-4-84743/",
 		"https://pixabay.com/sound-effects/punch-4-84743/",
 		"https://pixabay.com/sound-effects/tv-television-on-off-6224/",
 		"https://pixabay.com/sound-effects/heavy-beam-weapon-7052/",
@@ -58,6 +61,7 @@ var credits = [
 		"https://pixabay.com/sound-effects/notification-2-269292/",
 		"https://pixabay.com/sound-effects/tv-off-91795/",
 		"https://pixabay.com/sound-effects/old-pc-monitor-switch-off-8575/",
+		"https://pixabay.com/sound-effects/computer-keyboard-typing-290582/",
 		"https://beepyeah.itch.io/8-bit-sfx-pack"
 	],[
 		"Tools used",
