@@ -36,17 +36,24 @@ func _ready() -> void:
 	
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
-	play_transition()
+	play_transition_on()
 	
 	play_level(0)
 	music_player.volume_db = linear_to_db(0.5)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
-func play_transition():
+func play_transition_off():
 	monitor_transition.visible = true
 	animation_player.play('monitor_zap')
 	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
+	await animation_player.animation_finished
+	monitor_transition.visible = false
+
+func play_transition_on():
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap_start')
+	play_sfx("res://assets/Audio/Sfx/on_off.ogg")
 	await animation_player.animation_finished
 	monitor_transition.visible = false
 	
@@ -81,8 +88,10 @@ func play_level(index:int):
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
 	if level_instance.cutscene:
-		await play_transition()
-	else: play_transition()
+		await play_transition_off()
+	else: 
+		await play_transition_off()
+		play_transition_on()
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
@@ -95,7 +104,7 @@ func play_level(index:int):
 		await cutscene_instance._continue
 		cutscene_instance.queue_free()
 		
-		play_transition()
+		play_transition_on()
 	
 	#####NEXT LEVEL
 	play_level(index + 1)
