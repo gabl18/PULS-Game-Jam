@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7a8inwld47tl"]
+[gd_scene load_steps=3 format=3 uid="uid://7a8inwld47tl"]
 
 [ext_resource type="Script" uid="uid://csw23wdmf44i5" path="res://Game/moveable_object.gd" id="1_0buwq"]
+[ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="2_dbivn"]
 
 [node name="MoveableObject" type="CharacterBody2D"]
 collision_layer = 9
@@ -9,5 +10,9 @@ input_pickable = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_0buwq")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dbivn")
+bus = &"SFX"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

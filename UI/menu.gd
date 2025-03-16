@@ -2,16 +2,27 @@ extends Control
 
 @export var credits: Control
 @export var options: Control
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
+@onready var music_bus_id = AudioServer.get_bus_index("Music")
+@onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
+
+func play_sfx(sound_path: String):
+	sfx_player.stream = load(sound_path)
+	sfx_player.play()
 
 var menu_visible = false
 
 func _input(event):
 	if event.is_action_pressed("Pause_Menu"):
 		if menu_visible:
+			play_sfx("res://assets/Audio/Sfx/cancel-1.ogg")
 			hide_menu()
 		else:
+			play_sfx("res://assets/Audio/Sfx/ok-2.ogg")
 			show_menu()
 	elif event.is_action_pressed("Back_Menu"):
+		play_sfx("res://assets/Audio/Sfx/cancel-1.ogg")
 		show_menu()
 
 func hide_menu():
@@ -39,16 +50,20 @@ func show_options():
 
 func _on_continue_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		play_sfx("res://assets/Audio/Sfx/ok-2.ogg")
 		hide_menu()
 
 func _on_options_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		play_sfx("res://assets/Audio/Sfx/ok-2.ogg")
 		show_options()
 
 func _on_credits_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		play_sfx("res://assets/Audio/Sfx/ok-2.ogg")
 		show_credits()
  
 func _on_back_button_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
+		play_sfx("res://assets/Audio/Sfx/cancel-1.ogg")
 		show_menu()

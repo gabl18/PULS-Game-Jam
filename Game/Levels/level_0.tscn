@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cyjxo07gym830"]
+[gd_scene load_steps=14 format=3 uid="uid://t85skhc3ctg0"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_dc782"]
 [ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="5_euy0k"]
@@ -51,10 +51,13 @@ visible = false
 shape = SubResource("WorldBoundaryShape2D_41fh5")
 
 [node name="BlueLaserBig2" parent="." instance=ExtResource("5_euy0k")]
-position = Vector2(666, 133)
+position = Vector2(664, 168)
 
 [node name="MoveableObject" parent="BlueLaserBig2" index="0"]
 collision_mask = 1
+
+[node name="Laser_Component" parent="BlueLaserBig2/MoveableObject" index="0"]
+always_on = false
 
 [node name="YellowLaserBig" parent="." instance=ExtResource("6_41fh5")]
 position = Vector2(151, 546)

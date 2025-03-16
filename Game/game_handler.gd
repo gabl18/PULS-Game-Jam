@@ -6,6 +6,8 @@ extends Control
 @onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
 @onready var crack_texture: TextureRect = $CrackTexture
 @onready var notification_container: Control = $Notification_Container
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var monitor_transition: TextureRect = $Monitor_Transition
 
 const NOTIFICATION = preload("res://UI/notification.tscn")
 
@@ -15,7 +17,29 @@ const NOTIFICATION = preload("res://UI/notification.tscn")
 var notification_instance: Notification
 var level_instance: Level
 
+####TEST
+
+func play_sfx(sound_path: String):
+	sfx_player.stream = load(sound_path)
+	sfx_player.play()
+	
+	#sfx_player.connect("finished", sfx_player.queue_free)  # Löscht sich nach Abspielen selbst
+	
 func _ready() -> void:
+	
+	#### SCREEEN ZAPPING 
+	# the code is here when the screen should zap 
+	# so start the zapping animation here
+	# e.g. animation_player.play('zap')
+	
+	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap')
+	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
+	await animation_player.animation_finished
+	monitor_transition.visible = false
+	
 	play_level(0)
 	music_player.volume_db = linear_to_db(0.5)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
@@ -31,7 +55,8 @@ func play_level(index:int):
 	else:
 		crack_texture.show()
 		crack_texture.texture = cracks[level_instance.crack]
-	
+		#play_sfx("res://assets/Audio/Sfx/crack_more.ogg")
+
 	
 	await level_instance.finished_level
 
@@ -39,9 +64,8 @@ func play_level(index:int):
 	notification_instance = NOTIFICATION.instantiate()
 	notification_container.add_child(notification_instance)
 	notification_instance.global_position = Vector2(1198.0,358.0)
-	
+
 	await notification_instance._continue
-	
 	notification_instance.queue_free()
 	
 	#####SCREEN ZAPING
@@ -49,20 +73,27 @@ func play_level(index:int):
 	# so start the zapping animation here
 	# e.g. animation_player.play('zap')
 	
-	#await animation_player.animation_finished
+	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap')
+	play_sfx("res://assets/Audio/Sfx/old_off.ogg")
+	await animation_player.animation_finished
+	monitor_transition.visible = false
+	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
 	#### Cut Scene
 	# The Levels have a property "Cut Scene", this should be true when a cutscene (the punching one) should be played
 	if level_instance.cutscene:
-		pass
 		# cutscene start here
 		# e.g. animation_player.play('cutscene')
-		
+		pass
 		#await animation_player.animation_finished
 		
 		##### SCREEN ZAPPING
 		# after the animation it should zap again
-		
+
 	
 	#####NEXT LEVEL
 	play_level(index + 1)
@@ -72,6 +103,16 @@ func load_level(level:PackedScene):
 	level_instance = level.instantiate()
 
 	level_container.add_child(level_instance)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 1, true)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 2, true)
+	monitor_transition.visible = true
+	animation_player.play('monitor_zap_start')
+	play_sfx("res://assets/Audio/Sfx/on_off.ogg")
+	await animation_player.animation_finished
+	await sfx_player.finished
+	monitor_transition.visible = false
+	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
+	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
 	
 func unload_level():
 	if (is_instance_valid(level_instance)):

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8b1k55ealin2"]
+[gd_scene load_steps=8 format=3 uid="uid://c8b1k55ealin2"]
 
 [ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_gr3s0"]
 [ext_resource type="PackedScene" uid="uid://d0ytmy6ihprh4" path="res://Game/light_up_component.tscn" id="2_jvt7e"]
 [ext_resource type="Texture2D" uid="uid://dfltrbggw1v0p" path="res://assets/Art/Lights.png" id="3_1ilfo"]
+[ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="4_jvt7e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1fc28"]
 atlas = ExtResource("3_1ilfo")
@@ -24,6 +25,11 @@ light_component = NodePath("LightUp_Component")
 [node name="LightUp_Component" parent="Light" node_paths=PackedStringArray("sprite") groups=["Lights"] instance=ExtResource("2_jvt7e")]
 sprite = NodePath("../Sprite2D")
 texture_off = SubResource("AtlasTexture_1fc28")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="Light/LightUp_Component"]
+stream = ExtResource("4_jvt7e")
+volume_db = 20.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="Light"]
 scale = Vector2(2, 2)

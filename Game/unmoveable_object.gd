@@ -1,6 +1,9 @@
 @tool
 extends RigidBody2D
 
+@onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
+
 @export var laser_component: LaserComponent
 @export var light_component: LightComponent
 
@@ -39,6 +42,8 @@ var is_laser_colliding := false:
 		if value != is_laser_colliding:
 			laser_collision_changed.emit(value)
 		is_laser_colliding = value
+		sfx_player.stream = load("res://assets/Audio/Sfx/bonk-4.ogg")
+		sfx_player.play()
 
 func _ready() -> void:
 	laser_collided.connect(_handle_lasers)

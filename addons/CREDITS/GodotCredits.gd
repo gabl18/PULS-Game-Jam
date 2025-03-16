@@ -29,37 +29,57 @@ var lines := []
 
 var credits = [
 	[
-		"A game by Awesome Game Company"
+		"Laser Game"
 	],[
 		"Programming",
 		"Michael",
-		"Programmer Name 2"
-	],[
-		"Art",
 		"Gabriel"
 	],[
-		"Music",
-		"Musician Name"
+		"Art",
+		"Gabriel",
+		"Michael"
 	],[
-		"Sound Effects",
-		"SFX Name"
+		"Music",
+		"https://tallbeard.itch.io/music-loop-bundle"
 	],[
 		"Testers",
-		"Name 1",
-		"Name 2",
-		"Name 3"
+		"Felix",
+		"Noah",
+		"Melanie"
+	],[
+		"Sound Effects",
+		"https://pixabay.com/sound-effects/punch-4-84743/",
+		"https://pixabay.com/sound-effects/punch-4-84743/",
+		"https://pixabay.com/sound-effects/tv-television-on-off-6224/",
+		"https://pixabay.com/sound-effects/heavy-beam-weapon-7052/",
+		"https://pixabay.com/sound-effects/wood-crack-4-88688/",
+		"https://pixabay.com/sound-effects/windows-error-sound-effect-35894/",
+		"https://pixabay.com/sound-effects/pc-startup-with-broken-hdd-2-25314/",
+		"https://pixabay.com/sound-effects/notification-2-269292/",
+		"https://pixabay.com/sound-effects/tv-off-91795/",
+		"https://pixabay.com/sound-effects/old-pc-monitor-switch-off-8575/",
+		"https://beepyeah.itch.io/8-bit-sfx-pack"
 	],[
 		"Tools used",
-		"Developed with Godot Engine",
+		"Godot Engine",
 		"https://godotengine.org/license",
 		"",
-		"Art created with My Favourite Art Program",
-		"https://myfavouriteartprogram.com"
+		"Aseprite",
+		"https://www.aseprite.org/"
 	],[
-		"Special thanks",
-		"My parents",
-		"My friends",
-		"My pet rabbit"
+		"Font",
+		"https://rugikong.itch.io/montjuic"
+	],[
+		"Tutorials",
+		"https://www.youtube.com/watch?v=Mgk5eAvzo8k",
+		"https://www.youtube.com/watch?v=Mgk5eAvzo8k"
+	],[
+		"Made for PULS GAME JAM",
+		"https://itch.io/jam/puls-game-jam"
+	],[
+		"",
+		"",
+		"THANKS FOR PLAYING"
 	]
 ]
 

@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=3 uid="uid://tvhce5avbeov"]
+
+[ext_resource type="Script" uid="uid://i5uqtdfyk8kf" path="res://UI/cutscene_1.gd" id="1_8b0eg"]
+[ext_resource type="Texture2D" uid="uid://cnvpn3iy5wpvh" path="res://assets/Art/computer_smash.png" id="2_pgvwx"]
+[ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="3_8188w"]
+[ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="4_0l36r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbtn1"]
+atlas = ExtResource("2_pgvwx")
+region = Rect2(0, 0, 200, 112)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0f4ci"]
+font = ExtResource("3_8188w")
+font_size = 40
+
+[sub_resource type="Animation" id="Animation_1i4fl"]
+resource_name = "pc_smash"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 200, 112), Rect2(200, 0, 200, 112), Rect2(400, 0, 200, 112)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_7t1s8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 200, 112)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Label2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wxiwt"]
+_data = {
+&"RESET": SubResource("Animation_7t1s8"),
+&"pc_smash": SubResource("Animation_1i4fl")
+}
+
+[node name="Cutscene1" type="Node2D"]
+script = ExtResource("1_8b0eg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_hbtn1")
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -250.0
+offset_right = 218.0
+offset_bottom = -165.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Why do I have to do this stupid Job?!"
+label_settings = SubResource("LabelSettings_0f4ci")
+
+[node name="Label2" type="Label" parent="CanvasLayer/TextureRect"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -234.0
+offset_top = -198.0
+offset_right = 218.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "I DONT WANT TO DO THIS ANYMORE!!!"
+label_settings = SubResource("LabelSettings_0f4ci")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_wxiwt")
+}
+speed_scale = 0.3
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0l36r")
+volume_db = 20.0
+bus = &"SFX"

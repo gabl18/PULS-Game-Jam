@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxnpwrnoulyxo"]
+[gd_scene load_steps=13 format=3 uid="uid://bxnpwrnoulyxo"]
 
 [ext_resource type="Texture2D" uid="uid://by3wrjd4j6tg2" path="res://assets/Art/Notification.png" id="1_2385i"]
 [ext_resource type="Script" uid="uid://cnmm30b53mnk6" path="res://UI/notification.gd" id="1_h6g7a"]
 [ext_resource type="Texture2D" uid="uid://cuyce8b20pc7b" path="res://assets/Art/Chef_ThumbsUp.png" id="2_h6g7a"]
 [ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="3_6blkm"]
+[ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="5_6blkm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dr65b"]
 font = ExtResource("3_6blkm")
@@ -236,6 +237,11 @@ offset_bottom = 40.0
 libraries = {
 &"": SubResource("AnimationLibrary_7ktcc")
 }
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6blkm")
+volume_db = 20.0
+bus = &"SFX"
 
 [connection signal="gui_input" from="CanvasLayer/TextureRect/Control/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
 [connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="__continue"]

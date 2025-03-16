@@ -1,6 +1,9 @@
 @tool
 extends CharacterBody2D
 
+@onready var sfx_bus_id = AudioServer.get_bus_index("SFX")
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
+
 @export var rotateable: bool = true
 @export var moveable: bool = true
 
@@ -59,6 +62,8 @@ func _ready() -> void:
 
 func _handle_lasers(laser,entered:bool):
 	if entered:
+		sfx_player.stream = load("res://assets/Audio/Sfx/bonk-4.ogg")
+		sfx_player.play()
 		if not (laser_component and laser == laser_component.laser):
 				
 			colliding_lasers.append(laser)

@@ -60,17 +60,17 @@ position = Vector2(65, 105)
 [node name="RedLaserBig" parent="." instance=ExtResource("3_t4bmb")]
 position = Vector2(71, 550)
 
-[node name="Laser_Component" parent="RedLaserBig/UnmoveableCollider" index="0"]
+[node name="Laser_Component" parent="RedLaserBig/UnmoveableCollider" index="1"]
 always_on = false
 
 [node name="RedLaserBig2" parent="." instance=ExtResource("3_t4bmb")]
 position = Vector2(481, 106)
 rotation = 0.0882552
 
-[node name="Laser_Component" parent="RedLaserBig2/UnmoveableCollider" index="0"]
+[node name="Laser_Component" parent="RedLaserBig2/UnmoveableCollider" index="1"]
 always_on = false
 
-[node name="Sprite2D" parent="RedLaserBig2/UnmoveableCollider" index="1"]
+[node name="Sprite2D" parent="RedLaserBig2/UnmoveableCollider" index="2"]
 rotation = 0.0159769
 
 [node name="RedMirrorCursed" parent="." instance=ExtResource("11_63avf")]
@@ -103,12 +103,10 @@ rotation = 3.05484
 [node name="ObjectVeryLong" parent="." instance=ExtResource("8_gujju")]
 position = Vector2(1071, 302.997)
 rotation = 3.12379
-scale = Vector2(1, 1)
 
 [node name="ObjectVeryLong2" parent="." instance=ExtResource("8_gujju")]
 position = Vector2(906.001, 259.998)
 rotation = 3.12379
-scale = Vector2(1, 1)
 
 [node name="YellowMirrorWide" parent="." instance=ExtResource("10_vnwth")]
 position = Vector2(616, 477)

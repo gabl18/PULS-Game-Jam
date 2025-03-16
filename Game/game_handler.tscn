@@ -1,12 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=31 format=3 uid="uid://21h4aul1x2vi"]
 
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
-[ext_resource type="PackedScene" uid="uid://cyjxo07gym830" path="res://Game/Levels/level_0.tscn" id="2_jjiyw"]
+[ext_resource type="PackedScene" uid="uid://t85skhc3ctg0" path="res://Game/Levels/level_0.tscn" id="2_c2tff"]
 [ext_resource type="PackedScene" uid="uid://cpjfo3084tesq" path="res://Game/Levels/level_1.tscn" id="3_jidiu"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
 [ext_resource type="PackedScene" uid="uid://cnv26vhhfhdwm" path="res://Game/Levels/level_2.tscn" id="4_2eoy2"]
-[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
+[ext_resource type="Shader" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="Texture2D" uid="uid://cr3peepe5dnsp" path="res://assets/Art/Cracks.png" id="4_jidiu"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
 [ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
@@ -16,7 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://bo510brdntkm3" path="res://assets/Art/Fenster.png" id="6_ns6wn"]
 [ext_resource type="PackedScene" uid="uid://cy2tufwauwx81" path="res://Game/Levels/level_5.tscn" id="7_qe32i"]
 [ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="12_7ksrt"]
-[ext_resource type="AudioStream" uid="uid://byos8epcikrog" path="res://assets/Audio/Sfx/win-10.ogg" id="13_jidiu"]
+[ext_resource type="Texture2D" uid="uid://br63dj7xbcf4q" path="res://assets/Art/Monitor_Transition.png" id="16_qe32i"]
+[ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="17_c2tff"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eoy2"]
 atlas = ExtResource("4_jidiu")
@@ -46,6 +47,66 @@ shader_parameter/uv_scale = Vector2(0.3, 0.3)
 atlas = ExtResource("4_jidiu")
 region = Rect2(0, 0, 626, 417)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_boet6"]
+atlas = ExtResource("16_qe32i")
+region = Rect2(0, 0, 115, 99)
+
+[sub_resource type="Animation" id="Animation_5kpg2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monitor_Transition:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 115, 99)]
+}
+
+[sub_resource type="Animation" id="Animation_mtflj"]
+resource_name = "monitor_zap"
+length = 2.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monitor_Transition:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 115, 99), Rect2(115, 0, 115, 99), Rect2(230, 0, 115, 99), Rect2(345, 0, 115, 99), Rect2(460, 0, 115, 99)]
+}
+
+[sub_resource type="Animation" id="Animation_qe32i"]
+resource_name = "monitor_zap_start"
+length = 2.0
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monitor_Transition:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(460, 0, 115, 99), Rect2(345, 0, 115, 99), Rect2(230, 0, 115, 99), Rect2(115, 0, 115, 99), Rect2(0, 0, 115, 99), Rect2(575, 0, 115, 99)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hukpe"]
+_data = {
+&"RESET": SubResource("Animation_5kpg2"),
+&"monitor_zap": SubResource("Animation_mtflj"),
+&"monitor_zap_start": SubResource("Animation_qe32i")
+}
+
 [node name="GameHandler" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -55,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_eu5t0")
-levels = Array[PackedScene]([ExtResource("2_jjiyw"), ExtResource("3_jidiu"), ExtResource("4_2eoy2"), ExtResource("5_qe32i"), ExtResource("6_c2tff"), ExtResource("7_qe32i"), ExtResource("5_2eoy2")])
+levels = Array[PackedScene]([ExtResource("2_c2tff"), ExtResource("3_jidiu"), ExtResource("4_2eoy2"), ExtResource("5_qe32i"), ExtResource("6_c2tff"), ExtResource("7_qe32i"), ExtResource("5_2eoy2")])
 cracks = Array[Texture2D]([SubResource("AtlasTexture_2eoy2"), SubResource("AtlasTexture_1ybsf"), SubResource("AtlasTexture_c2tff"), SubResource("AtlasTexture_qe32i"), SubResource("AtlasTexture_ce87w")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -81,6 +142,17 @@ options = NodePath("../Options")
 [node name="ColorRect" parent="menu" index="0"]
 color = Color(0.219608, 0.219608, 0.235294, 0.85098)
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="menu"]
+stream = ExtResource("12_7ksrt")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="menu"]
+stream = ExtResource("17_c2tff")
+volume_db = 10.0
+bus = &"SFX"
+
 [node name="Options" parent="." instance=ExtResource("4_jjiyw")]
 visible = false
 layout_mode = 1
@@ -91,6 +163,14 @@ layout_mode = 1
 
 [node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
 z_index = 4
+
+[node name="Notification_Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1908.0
+offset_top = 260.0
+offset_right = 1948.0
+offset_bottom = 300.0
+mouse_filter = 2
 
 [node name="Border" type="TextureRect" parent="."]
 layout_mode = 1
@@ -112,16 +192,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_jidiu")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("12_7ksrt")
-volume_db = -10.0
-autoplay = true
-bus = &"Music"
-
-[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_jidiu")
-bus = &"SFX"
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -131,13 +201,31 @@ offset_left = -119.0
 offset_bottom = 26.0
 grow_horizontal = 0
 
-[node name="Notification_Container" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 1908.0
-offset_top = 260.0
-offset_right = 1948.0
-offset_bottom = 300.0
-mouse_filter = 2
+[node name="Monitor_Transition" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_boet6")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_7ksrt")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_c2tff")
+bus = &"SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hukpe")
+}
+speed_scale = 2.0
 
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
