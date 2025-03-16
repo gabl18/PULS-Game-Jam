@@ -1,18 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cyjxo07gym830"]
+[gd_scene load_steps=14 format=3 uid="uid://cyjxo07gym830"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_dc782"]
 [ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="5_euy0k"]
 [ext_resource type="PackedScene" uid="uid://ijadicnlk28m" path="res://Game/Objects/yellow_laser_big.tscn" id="6_41fh5"]
-[ext_resource type="PackedScene" uid="uid://7w4i5uxxayro" path="res://Game/Objects/blue_mirror_long.tscn" id="6_46iya"]
 [ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="7_ds0my"]
-[ext_resource type="PackedScene" uid="uid://cd7ukf17qcjp3" path="res://Game/Objects/yellow_mirror_wide.tscn" id="7_qvpfb"]
-[ext_resource type="PackedScene" uid="uid://dn47ocf266lj0" path="res://Game/Objects/blue_light.tscn" id="8_qvpfb"]
-[ext_resource type="PackedScene" uid="uid://crj8irlguvofx" path="res://Game/Objects/red_mirror_tall.tscn" id="8_vxaeq"]
+[ext_resource type="PackedScene" uid="uid://bjd1jbocxd1vh" path="res://Game/Objects/red_laser_big.tscn" id="7_v3lyr"]
 [ext_resource type="PackedScene" uid="uid://bhgni83ejcu78" path="res://Game/Objects/object_long.tscn" id="9_cq76k"]
+[ext_resource type="PackedScene" uid="uid://c8tdrlso8wq58" path="res://Game/Objects/blue_mirror_tall.tscn" id="9_vxaeq"]
 [ext_resource type="PackedScene" uid="uid://boug82hhf6vfp" path="res://Game/Objects/object_tall.tscn" id="10_x7yim"]
 [ext_resource type="PackedScene" uid="uid://le7nltj555cr" path="res://Game/Objects/object_very_long.tscn" id="11_y4fcl"]
-[ext_resource type="PackedScene" uid="uid://dpm51wmrg8hyp" path="res://Game/Objects/red_mirror_cursed.tscn" id="12_tbm0t"]
-[ext_resource type="PackedScene" uid="uid://xhuf47xi3jmh" path="res://Game/Objects/object_diagonal.tscn" id="13_x7yim"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxm2b"]
 distance = -649.0
@@ -55,47 +51,49 @@ visible = false
 shape = SubResource("WorldBoundaryShape2D_41fh5")
 
 [node name="BlueLaserBig2" parent="." instance=ExtResource("5_euy0k")]
-position = Vector2(564, 113)
+position = Vector2(666, 133)
 
 [node name="MoveableObject" parent="BlueLaserBig2" index="0"]
 collision_mask = 1
 
 [node name="YellowLaserBig" parent="." instance=ExtResource("6_41fh5")]
-position = Vector2(879, 158)
+position = Vector2(151, 546)
 
 [node name="MoveableObject" parent="YellowLaserBig" index="0"]
 collision_mask = 1
 
 [node name="RedLight" parent="." instance=ExtResource("7_ds0my")]
-position = Vector2(108, 69)
+position = Vector2(1071, 529)
 
-[node name="BlueLight" parent="." instance=ExtResource("8_qvpfb")]
-position = Vector2(701, 547)
+[node name="RedLaserBig" parent="." instance=ExtResource("7_v3lyr")]
+position = Vector2(44, 81)
 
-[node name="BlueMirrorLong" parent="." instance=ExtResource("6_46iya")]
-position = Vector2(163, 518)
-rotation = 1.67922
+[node name="UnmoveableCollider" parent="RedLaserBig" index="0"]
+position = Vector2(3, 2)
 
-[node name="YellowMirrorWide" parent="." instance=ExtResource("7_qvpfb")]
-position = Vector2(688, 394)
-
-[node name="RedMirrorTall" parent="." instance=ExtResource("8_vxaeq")]
-position = Vector2(900, 478)
+[node name="Laser_Component" parent="RedLaserBig/UnmoveableCollider" index="0"]
+always_on = false
 
 [node name="ObjectLong" parent="." instance=ExtResource("9_cq76k")]
-position = Vector2(429, 553)
+position = Vector2(383, 540)
+rotation = 1.64201
+
+[node name="ObjectLong2" parent="." instance=ExtResource("9_cq76k")]
+position = Vector2(419, 308)
+rotation = 1.60468
 
 [node name="ObjectTall" parent="." instance=ExtResource("10_x7yim")]
-position = Vector2(143, 220)
+position = Vector2(350, 156)
 
 [node name="ObjectVeryLong" parent="." instance=ExtResource("11_y4fcl")]
-position = Vector2(954, 311)
+position = Vector2(350, 39)
 
-[node name="RedMirrorCursed" parent="." instance=ExtResource("12_tbm0t")]
-position = Vector2(370, 90)
+[node name="ObjectVeryLong2" parent="." instance=ExtResource("11_y4fcl")]
+position = Vector2(1060, 373)
 
-[node name="ObjectDiagonal" parent="." instance=ExtResource("13_x7yim")]
-position = Vector2(338, 288)
+[node name="BlueMirrorTall" parent="." instance=ExtResource("9_vxaeq")]
+position = Vector2(887, 426)
 
 [editable path="BlueLaserBig2"]
 [editable path="YellowLaserBig"]
+[editable path="RedLaserBig"]

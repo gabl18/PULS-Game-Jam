@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxnpwrnoulyxo"]
+[gd_scene load_steps=12 format=3 uid="uid://bxnpwrnoulyxo"]
 
 [ext_resource type="Texture2D" uid="uid://by3wrjd4j6tg2" path="res://assets/Art/Notification.png" id="1_2385i"]
 [ext_resource type="Script" uid="uid://cnmm30b53mnk6" path="res://UI/notification.gd" id="1_h6g7a"]
@@ -9,24 +9,13 @@
 font = ExtResource("3_6blkm")
 font_size = 40
 
+[sub_resource type="LabelSettings" id="LabelSettings_h6g7a"]
+font = ExtResource("3_6blkm")
+font_size = 24
+
 [sub_resource type="LabelSettings" id="LabelSettings_6blkm"]
 font = ExtResource("3_6blkm")
 font_size = 30
-
-[sub_resource type="Animation" id="Animation_dr65b"]
-resource_name = "pop_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect/Control:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.31, 0.32, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1198, 358), Vector2(779, 346), Vector2(778, 352), Vector2(692, 353)]
-}
 
 [sub_resource type="Animation" id="Animation_lx5wg"]
 length = 0.001
@@ -69,6 +58,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_h6g7a"]
 resource_name = "click"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -91,7 +81,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.054902)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -106,6 +96,21 @@ tracks/2/keys = {
 "values": [Vector2(440, 264), Vector2(453, 272)]
 }
 
+[sub_resource type="Animation" id="Animation_dr65b"]
+resource_name = "pop_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.31, 0.32, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1198, 358), Vector2(779, 346), Vector2(778, 352), Vector2(692, 353)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7ktcc"]
 _data = {
 &"RESET": SubResource("Animation_lx5wg"),
@@ -113,8 +118,9 @@ _data = {
 &"pop_up": SubResource("Animation_dr65b")
 }
 
-[node name="Notification" type="Node2D"]
+[node name="Notification" type="Node2D" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_h6g7a")
+animation_player = NodePath("CanvasLayer/AnimationPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -141,6 +147,7 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 439.0
 offset_bottom = 258.0
+mouse_filter = 0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
 layout_mode = 1
@@ -189,6 +196,22 @@ text = "GREAT
 JOB"
 label_settings = SubResource("LabelSettings_dr65b")
 
+[node name="Label3" type="Label" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -403.0
+offset_top = -99.0
+offset_right = -226.0
+offset_bottom = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Employee #34F12B"
+label_settings = SubResource("LabelSettings_h6g7a")
+
 [node name="Label2" type="Label" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 3
@@ -215,3 +238,4 @@ libraries = {
 }
 
 [connection signal="gui_input" from="CanvasLayer/TextureRect/Control/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="__continue"]

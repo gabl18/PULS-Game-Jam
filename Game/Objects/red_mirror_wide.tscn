@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cyw3qdcl0nyj2" path="res://Game/unmoveable_object.tscn" id="1_4btqq"]
 [ext_resource type="Texture2D" uid="uid://0kfqq16c1sna" path="res://assets/Art/Aseprite/Objects.png" id="2_e0eow"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iux3x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4btqq"]
 atlas = ExtResource("2_e0eow")
-region = Rect2(600, 0, 150, 150)
+region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxrja"]
 size = Vector2(172, 72)
@@ -19,7 +19,7 @@ is_mirror = true
 
 [node name="Sprite2D" type="Sprite2D" parent="UnmoveableCollider"]
 scale = Vector2(2, 2)
-texture = SubResource("AtlasTexture_iux3x")
+texture = SubResource("AtlasTexture_4btqq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UnmoveableCollider"]
 visible = false

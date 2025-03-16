@@ -131,6 +131,14 @@ offset_left = -119.0
 offset_bottom = 26.0
 grow_horizontal = 0
 
+[node name="Notification_Container" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1908.0
+offset_top = 260.0
+offset_right = 1948.0
+offset_bottom = 300.0
+mouse_filter = 2
+
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Control" to="menu" method="_on_back_button_gui_input"]

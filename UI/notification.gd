@@ -1,6 +1,11 @@
 extends Node2D
+class_name Notification
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var animation_player: AnimationPlayer
+
+signal _continue
+
+var done := false
 
 func _ready() -> void:
 	animation_player.play('pop_up')
@@ -8,3 +13,8 @@ func _ready() -> void:
 func _on_nine_patch_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		animation_player.play('click')
+		done = true
+
+func __continue(_n):
+	if done:
+		_continue.emit()

@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cyjxo07gym830"]
+[gd_scene load_steps=11 format=3 uid="uid://cypem6w24uu7k"]
 
 [ext_resource type="Script" uid="uid://dkqvdks7i3tro" path="res://Game/level.gd" id="1_4lrle"]
 [ext_resource type="PackedScene" uid="uid://b0jes5ovsn2mw" path="res://Game/Objects/blue_laser_big.tscn" id="5_euy0k"]
 [ext_resource type="PackedScene" uid="uid://ijadicnlk28m" path="res://Game/Objects/yellow_laser_big.tscn" id="6_41fh5"]
 [ext_resource type="PackedScene" uid="uid://bjd1jbocxd1vh" path="res://Game/Objects/red_laser_big.tscn" id="7_v3lyr"]
-[ext_resource type="PackedScene" path="res://Game/Objects/blue_light.tscn" id="9_61k0n"]
+[ext_resource type="PackedScene" uid="uid://dn47ocf266lj0" path="res://Game/Objects/blue_light.tscn" id="9_61k0n"]
 [ext_resource type="PackedScene" uid="uid://c8b1k55ealin2" path="res://Game/Objects/red_light.tscn" id="10_e5ij1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sxm2b"]
