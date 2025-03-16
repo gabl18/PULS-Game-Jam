@@ -1,0 +1,217 @@
+[gd_scene load_steps=11 format=3 uid="uid://bxnpwrnoulyxo"]
+
+[ext_resource type="Texture2D" uid="uid://by3wrjd4j6tg2" path="res://assets/Art/Notification.png" id="1_2385i"]
+[ext_resource type="Script" uid="uid://cnmm30b53mnk6" path="res://UI/notification.gd" id="1_h6g7a"]
+[ext_resource type="Texture2D" uid="uid://cuyce8b20pc7b" path="res://assets/Art/Chef_ThumbsUp.png" id="2_h6g7a"]
+[ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="3_6blkm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dr65b"]
+font = ExtResource("3_6blkm")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_6blkm"]
+font = ExtResource("3_6blkm")
+font_size = 30
+
+[sub_resource type="Animation" id="Animation_dr65b"]
+resource_name = "pop_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.31, 0.32, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1198, 358), Vector2(779, 346), Vector2(778, 352), Vector2(692, 353)]
+}
+
+[sub_resource type="Animation" id="Animation_lx5wg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(692, 353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Control/NinePatchRect/TextureRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(440, 264)]
+}
+
+[sub_resource type="Animation" id="Animation_h6g7a"]
+resource_name = "click"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(692, 353)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect/Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.054902)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect/Control/NinePatchRect/TextureRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(440, 264), Vector2(453, 272)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ktcc"]
+_data = {
+&"RESET": SubResource("Animation_lx5wg"),
+&"click": SubResource("Animation_h6g7a"),
+&"pop_up": SubResource("Animation_dr65b")
+}
+
+[node name="Notification" type="Node2D"]
+script = ExtResource("1_h6g7a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CanvasLayer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 692.0
+offset_top = 353.0
+offset_right = -22.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/TextureRect/Control"]
+layout_mode = 1
+offset_right = 439.0
+offset_bottom = 258.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -447.0
+offset_top = -267.0
+offset_right = -7.0
+offset_bottom = -3.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_2385i")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -247.0
+offset_top = -226.0
+offset_right = -81.0
+offset_bottom = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_h6g7a")
+
+[node name="Label" type="Label" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -211.0
+offset_right = -197.0
+offset_bottom = -126.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "GREAT 
+JOB"
+label_settings = SubResource("LabelSettings_dr65b")
+
+[node name="Label2" type="Label" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -407.0
+offset_top = -61.0
+offset_right = -16.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = " Continue                             >>>"
+label_settings = SubResource("LabelSettings_6blkm")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_7ktcc")
+}
+
+[connection signal="gui_input" from="CanvasLayer/TextureRect/Control/NinePatchRect" to="." method="_on_nine_patch_rect_gui_input"]

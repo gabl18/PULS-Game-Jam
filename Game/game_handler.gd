@@ -25,7 +25,6 @@ func play_level(index:int):
 	if level_instance.crack == -1:
 		crack_texture.hide()
 	else:
-		print(level_instance.crack)
 		crack_texture.show()
 		crack_texture.texture = cracks[level_instance.crack]
 	
