@@ -121,7 +121,7 @@ rotation = 1.61646
 
 [node name="RedMirrorWide" parent="." instance=ExtResource("5_ocq31")]
 position = Vector2(19, 619)
-rotation = 0.763594
+rotation = 0.657189
 
 [node name="ObjectVeryLong" parent="." instance=ExtResource("6_h57qu")]
 position = Vector2(189, 208)
@@ -137,7 +137,7 @@ rotation = -0.0142304
 position = Vector2(834, 447)
 
 [node name="YellowLaserBig2" parent="." instance=ExtResource("3_adddq")]
-position = Vector2(464, 130)
+position = Vector2(459, 126)
 rotation = -0.154129
 
 [node name="ObjectTall" parent="." instance=ExtResource("7_wtlhy")]

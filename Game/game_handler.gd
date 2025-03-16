@@ -34,7 +34,7 @@ func _ready() -> void:
 	play_transition_on()
 	AudioServer.set_bus_effect_enabled(music_bus_id, 1, false)
 	AudioServer.set_bus_effect_enabled(music_bus_id, 2, false)
-	play_level(0)
+	play_level(7)
 	
 func play_transition_off():
 	monitor_transition.visible = true
@@ -52,6 +52,12 @@ func play_transition_on():
 	
 
 func play_level(index:int):
+	
+	if index == 8:
+		play_sfx("res://assets/Audio/Sfx/destroy.ogg")
+		$FINAL.show()
+		$FINAL.reset_credits()
+		return
 	
 	#### GAMETIME
 	load_level(levels[index])

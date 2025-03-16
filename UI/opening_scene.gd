@@ -39,6 +39,7 @@ func _ready() -> void:
 	$CanvasLayer/TextureRect/Control/JamCred.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/Jam.modulate.a = 0
 	$CanvasLayer/TextureRect/Control/OurCred.modulate.a = 0
+	$CanvasLayer/TextureRect/Control/Tutorial.modulate.a = 0
 	music_player.volume_db = linear_to_db(0.35)
 	animation_player.speed_scale = 1
 	animation_player.play('flicker')

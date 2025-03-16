@@ -1,11 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://21h4aul1x2vi"]
+[gd_scene load_steps=36 format=3 uid="uid://21h4aul1x2vi"]
 
 [ext_resource type="PackedScene" uid="uid://cfdp28nuqw3as" path="res://UI/menu.tscn" id="1_8npcb"]
 [ext_resource type="Script" uid="uid://co1inx43csi66" path="res://Game/game_handler.gd" id="1_eu5t0"]
 [ext_resource type="PackedScene" uid="uid://t85skhc3ctg0" path="res://Game/Levels/level_0.tscn" id="2_c2tff"]
 [ext_resource type="PackedScene" uid="uid://bdc3ra37a6mpe" path="res://UI/credits.tscn" id="3_wga2q"]
 [ext_resource type="PackedScene" uid="uid://cnv26vhhfhdwm" path="res://Game/Levels/level_2.tscn" id="4_2eoy2"]
-[ext_resource type="Shader" path="res://Game/tilescale.gdshader" id="4_al6wf"]
+[ext_resource type="Shader" uid="uid://bj84myycqy5b4" path="res://Game/tilescale.gdshader" id="4_al6wf"]
 [ext_resource type="Texture2D" uid="uid://cr3peepe5dnsp" path="res://assets/Art/Cracks.png" id="4_jidiu"]
 [ext_resource type="PackedScene" uid="uid://biidgbrjjlcjo" path="res://UI/options.tscn" id="4_jjiyw"]
 [ext_resource type="Texture2D" uid="uid://b7y6kot86mbwe" path="res://assets/Art/Floor.png" id="4_uxdc5"]
@@ -19,6 +19,9 @@
 [ext_resource type="AudioStream" uid="uid://cfkpivo3gvyo" path="res://assets/Audio/Music/Sketchbook 2024-07-03.ogg" id="12_7ksrt"]
 [ext_resource type="Texture2D" uid="uid://br63dj7xbcf4q" path="res://assets/Art/Monitor_Transition.png" id="16_qe32i"]
 [ext_resource type="AudioStream" uid="uid://cs16ia4vg25h" path="res://assets/Audio/Sfx/notification.ogg" id="17_c2tff"]
+[ext_resource type="Script" uid="uid://cagbmex1jt3o2" path="res://Game/final.gd" id="20_5kpg2"]
+[ext_resource type="FontFile" uid="uid://bghobknr5egpl" path="res://assets/Fonts/Montjuic.ttf" id="20_boet6"]
+[ext_resource type="PackedScene" uid="uid://cmmk31d282i46" path="res://addons/CREDITS/GodotCredits.tscn" id="22_hukpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eoy2"]
 atlas = ExtResource("4_jidiu")
@@ -108,6 +111,13 @@ _data = {
 &"monitor_zap_start": SubResource("Animation_qe32i")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_mtflj"]
+font = ExtResource("20_boet6")
+font_size = 80
+outline_size = 5
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 0.745098)
+
 [node name="GameHandler" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -133,6 +143,15 @@ stretch_mode = 1
 
 [node name="Level_Container" type="Node2D" parent="TextureRect"]
 unique_name_in_owner = true
+
+[node name="Notification_Container" type="Control" parent="."]
+z_index = -5
+anchors_preset = 0
+offset_left = 1908.0
+offset_top = 260.0
+offset_right = 1948.0
+offset_bottom = 300.0
+mouse_filter = 2
 
 [node name="menu" parent="." node_paths=PackedStringArray("credits", "options") instance=ExtResource("1_8npcb")]
 visible = false
@@ -164,14 +183,6 @@ layout_mode = 1
 
 [node name="BackButton" parent="Credits/MarginContainer/VBoxContainer" index="0"]
 z_index = 4
-
-[node name="Notification_Container" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 1908.0
-offset_top = 260.0
-offset_right = 1948.0
-offset_bottom = 300.0
-mouse_filter = 2
 
 [node name="Border" type="TextureRect" parent="."]
 layout_mode = 1
@@ -235,6 +246,54 @@ libraries = {
 &"": SubResource("AnimationLibrary_hukpe")
 }
 speed_scale = 3.0
+
+[node name="FINAL" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("20_5kpg2")
+
+[node name="ColorRect" type="ColorRect" parent="FINAL"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.733333)
+
+[node name="Label" type="Label" parent="FINAL"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = -11.5
+offset_right = 71.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thanks for Playing"
+label_settings = SubResource("LabelSettings_mtflj")
+
+[node name="CreditsBox2" parent="FINAL" instance=ExtResource("22_hukpe")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1102.0
+offset_bottom = 598.0
+title_size = 40
+text_size = 30
+base_speed = 50
 
 [connection signal="gui_input" from="Options/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]
 [connection signal="gui_input" from="Credits/MarginContainer/VBoxContainer/BackButton" to="menu" method="_on_back_button_gui_input"]

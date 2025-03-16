@@ -100,7 +100,7 @@ func _input(event: InputEvent) -> void:
 			if  not event.is_pressed():
 				# Start rotating when the right mouse button is pressed
 				is_rotating = false
-				set_collision_mask_value(1,false)
+				
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -116,7 +116,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 			if event.is_pressed():
 				# Start rotating when the right mouse button is pressed
 				is_rotating = true
-				set_collision_mask_value(1,true)
+				
 				# Calculate the initial rotation offset
 				var mouse_position = get_global_mouse_position()
 				var direction = (mouse_position - global_position).normalized()

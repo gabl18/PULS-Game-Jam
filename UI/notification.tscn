@@ -120,6 +120,8 @@ _data = {
 }
 
 [node name="Notification" type="Node2D" node_paths=PackedStringArray("animation_player")]
+z_index = -11
+z_as_relative = false
 script = ExtResource("1_h6g7a")
 animation_player = NodePath("CanvasLayer/AnimationPlayer")
 
@@ -143,12 +145,13 @@ offset_right = -22.0
 offset_bottom = -36.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="CanvasLayer/TextureRect/Control"]
 layout_mode = 1
 offset_right = 439.0
 offset_bottom = 258.0
-mouse_filter = 0
+mouse_filter = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/TextureRect/Control/NinePatchRect"]
 layout_mode = 1
